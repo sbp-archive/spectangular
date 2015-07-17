@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/components/textarea.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;2BAAsB,gBAAgB;;;;IAEjB,QAAQ;YAAR,QAAQ;;WAAR,QAAQ;0BAAR,QAAQ;;+BAAR,QAAQ;;;SAAR,QAAQ;;;qBAAR,QAAQ","file":"src/components/textarea.js","sourcesContent":["import Textfield from './textfield.js';\n\nexport default class Textarea extends Textfield {}\n"]}

@@ -1,0 +1,1 @@
+{"version":3,"sources":["src/components/select.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;sBAAiB,WAAW;;;;IAEP,MAAM;YAAN,MAAM;;WAAN,MAAM;0BAAN,MAAM;;+BAAN,MAAM;;;SAAN,MAAM;;;qBAAN,MAAM","file":"src/components/select.js","sourcesContent":["import Menu from './menu.js';\n\nexport default class Select extends Menu {}\n"]}
