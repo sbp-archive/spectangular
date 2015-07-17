@@ -1,7 +1,7 @@
 {
   "name": "spectangular",
   "description": "Simple Protractor e2e Component Testing for Angular",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": {
     "name": "Tommy Maintz",
     "email": "tommy.maintz@gmail.com"
@@ -32,7 +32,8 @@
   "keywords": [
     "angular",
     "protractor",
-    "e2e", "testing",
+    "e2e",
+    "testing",
     "material",
     "selenium",
     "angular material"
