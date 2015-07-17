@@ -55,4 +55,3 @@ var Checkbox = (function (_Component) {
 
 exports['default'] = Checkbox;
 module.exports = exports['default'];
-//# sourceMappingURL=checkbox.js.map

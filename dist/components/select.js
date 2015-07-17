@@ -32,4 +32,3 @@ var Select = (function (_Menu) {
 
 exports['default'] = Select;
 module.exports = exports['default'];
-//# sourceMappingURL=select.js.map

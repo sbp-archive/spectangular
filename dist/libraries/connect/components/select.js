@@ -32,12 +32,12 @@ var Select = (function (_Menu) {
   _createClass(Select, [{
     key: 'defaultSelector',
     get: function get() {
-      return '.md-select-menu-container.md-active md-select-menu';
+      return '.material-select-menu.material-opened';
     }
   }, {
     key: 'itemSelector',
     get: function get() {
-      return 'md-content > md-option';
+      return 'material-menu.material-select-menu > material-item';
     }
   }]);
 
@@ -46,4 +46,3 @@ var Select = (function (_Menu) {
 
 exports.Select = Select;
 exports['default'] = Select;
-//# sourceMappingURL=select.js.map

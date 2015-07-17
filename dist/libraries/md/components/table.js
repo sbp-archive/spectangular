@@ -56,4 +56,3 @@ var Table = (function (_Container) {
 
 exports.Table = Table;
 exports['default'] = Table;
-//# sourceMappingURL=table.js.map

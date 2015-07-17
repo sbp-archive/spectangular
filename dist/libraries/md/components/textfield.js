@@ -41,4 +41,3 @@ var Textfield = (function (_Component) {
 
 exports.Textfield = Textfield;
 exports['default'] = Textfield;
-//# sourceMappingURL=textfield.js.map

@@ -41,4 +41,3 @@ var Container = (function (_Component) {
 
 exports.Container = Container;
 exports['default'] = Container;
-//# sourceMappingURL=container.js.map

@@ -50,4 +50,3 @@ var Datepicker = (function (_Container) {
 })(_containerJs2['default']);
 
 exports.Datepicker = Datepicker;
-//# sourceMappingURL=datepicker.js.map

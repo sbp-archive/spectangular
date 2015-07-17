@@ -27,4 +27,3 @@ var Component = (function () {
 
 exports.Component = Component;
 exports['default'] = Component;
-//# sourceMappingURL=component.js.map

@@ -32,7 +32,7 @@ var Form = (function (_Container) {
   _createClass(Form, [{
     key: 'defaultSelector',
     get: function get() {
-      return 'form';
+      throw 'When using the Connect Material library you should specify a selector in your form config.';
     }
   }]);
 
@@ -41,4 +41,3 @@ var Form = (function (_Container) {
 
 exports.Form = Form;
 exports['default'] = Form;
-//# sourceMappingURL=form.js.map

@@ -32,7 +32,7 @@ var Drawer = (function (_Container) {
   _createClass(Drawer, [{
     key: 'defaultSelector',
     get: function get() {
-      return 'md-sidenav:not(.md-closed)';
+      return '.material-drawer-wrap';
     }
   }]);
 
@@ -41,4 +41,3 @@ var Drawer = (function (_Container) {
 
 exports.Drawer = Drawer;
 exports['default'] = Drawer;
-//# sourceMappingURL=drawer.js.map

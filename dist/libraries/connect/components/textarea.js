@@ -30,9 +30,9 @@ var Textarea = (function (_Textfield) {
   }
 
   _createClass(Textarea, [{
-    key: 'defaultSelector',
-    get: function get() {
-      return 'textarea';
+    key: 'getInputEl',
+    value: function getInputEl(componentEl) {
+      return componentEl.element(by.tagName('textarea'));
     }
   }]);
 
@@ -41,4 +41,3 @@ var Textarea = (function (_Textfield) {
 
 exports.Textarea = Textarea;
 exports['default'] = Textarea;
-//# sourceMappingURL=textarea.js.map

@@ -92,4 +92,3 @@ var Pagination = (function (_Container) {
 
 exports['default'] = Pagination;
 module.exports = exports['default'];
-//# sourceMappingURL=pagination.js.map

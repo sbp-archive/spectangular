@@ -30,24 +30,24 @@ var Pagination = (function (_Container) {
   }
 
   _createClass(Pagination, [{
-    key: 'currentPageSelector',
-    get: function get() {
-      return 'md-data-table-pagination > span:last-child';
-    }
-  }, {
     key: 'defaultSelector',
     get: function get() {
-      return 'md-data-table-pagination';
+      return 'material-gridlist-pagination';
     }
   }, {
     key: 'previousButtonSelector',
     get: function get() {
-      return 'md-button[aria-label="Previous"]';
+      return 'material-button:first-child';
     }
   }, {
     key: 'nextButtonSelector',
     get: function get() {
-      return 'md-button[aria-label="Next"]';
+      return 'material-button:last-child';
+    }
+  }, {
+    key: 'currentPageSelector',
+    get: function get() {
+      return 'material-title';
     }
   }]);
 
@@ -56,4 +56,3 @@ var Pagination = (function (_Container) {
 
 exports.Pagination = Pagination;
 exports['default'] = Pagination;
-//# sourceMappingURL=pagination.js.map

@@ -32,4 +32,3 @@ var Searchfield = (function (_Textfield) {
 
 exports.Searchfield = Searchfield;
 exports['default'] = Searchfield;
-//# sourceMappingURL=searchfield.js.map

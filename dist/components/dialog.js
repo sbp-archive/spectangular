@@ -63,4 +63,3 @@ var Dialog = (function (_Container) {
 
 exports['default'] = Dialog;
 module.exports = exports['default'];
-//# sourceMappingURL=dialog.js.map

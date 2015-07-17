@@ -32,4 +32,3 @@ var Selectfield = (function (_Component) {
 
 exports.Selectfield = Selectfield;
 exports['default'] = Selectfield;
-//# sourceMappingURL=selectfield.js.map

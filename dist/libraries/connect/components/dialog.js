@@ -30,9 +30,16 @@ var Dialog = (function (_Container) {
   }
 
   _createClass(Dialog, [{
+    key: 'getDialogType',
+    value: function getDialogType(dialogEl) {
+      return dialogEl.getAttribute('dialog-id').then(function (dialogId) {
+        return dialogId.replace('dialog-service-generated-', '');
+      });
+    }
+  }, {
     key: 'defaultSelector',
     get: function get() {
-      return '.md-dialog-container > md-dialog';
+      return '.material-dialog-wrap.material-opened';
     }
   }]);
 
@@ -41,4 +48,3 @@ var Dialog = (function (_Container) {
 
 exports.Dialog = Dialog;
 exports['default'] = Dialog;
-//# sourceMappingURL=dialog.js.map

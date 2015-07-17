@@ -41,4 +41,3 @@ var Drawer = (function (_Container) {
 
 exports.Drawer = Drawer;
 exports['default'] = Drawer;
-//# sourceMappingURL=drawer.js.map

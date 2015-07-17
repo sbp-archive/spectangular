@@ -138,4 +138,3 @@ var Table = (function (_Container) {
 
 exports['default'] = Table;
 module.exports = exports['default'];
-//# sourceMappingURL=table.js.map

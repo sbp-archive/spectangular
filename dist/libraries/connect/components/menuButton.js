@@ -30,9 +30,19 @@ var MenuButton = (function (_Button) {
   }
 
   _createClass(MenuButton, [{
+    key: 'getButtonIcon',
+    value: function getButtonIcon(menuButtonEl) {
+      return menuButtonEl.element(by.css('material-menu-button > material-button')).getAttribute('material-icon');
+    }
+  }, {
+    key: 'getButtonText',
+    value: function getButtonText(menuButtonEl) {
+      return menuButtonEl.element(by.css('material-menu-button > material-button')).getText();
+    }
+  }, {
     key: 'defaultSelector',
     get: function get() {
-      return 'md-menu > button';
+      return 'material-menu-button';
     }
   }]);
 
@@ -41,4 +51,3 @@ var MenuButton = (function (_Button) {
 
 exports.MenuButton = MenuButton;
 exports['default'] = MenuButton;
-//# sourceMappingURL=menuButton.js.map

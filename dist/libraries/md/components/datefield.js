@@ -32,4 +32,3 @@ var Datefield = (function (_Container) {
 
 exports.Datefield = Datefield;
 exports['default'] = Datefield;
-//# sourceMappingURL=datefield.js.map

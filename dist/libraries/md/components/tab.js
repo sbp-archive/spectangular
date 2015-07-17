@@ -41,4 +41,3 @@ var Tab = (function (_Component) {
 
 exports.Tab = Tab;
 exports['default'] = Tab;
-//# sourceMappingURL=tab.js.map

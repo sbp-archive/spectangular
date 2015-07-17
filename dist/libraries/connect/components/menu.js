@@ -32,12 +32,12 @@ var Menu = (function (_Container) {
   _createClass(Menu, [{
     key: 'defaultSelector',
     get: function get() {
-      return '.md-open-menu-container';
+      return 'material-menu.material-opened';
     }
   }, {
     key: 'itemSelector',
     get: function get() {
-      return 'md-menu-item > button';
+      return 'material-menu > *';
     }
   }]);
 
@@ -46,4 +46,3 @@ var Menu = (function (_Container) {
 
 exports.Menu = Menu;
 exports['default'] = Menu;
-//# sourceMappingURL=menu.js.map

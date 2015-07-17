@@ -49,4 +49,3 @@ var Searchfield = (function (_Textfield) {
 
 exports['default'] = Searchfield;
 module.exports = exports['default'];
-//# sourceMappingURL=searchfield.js.map

@@ -120,4 +120,3 @@ var Form = (function (_Container) {
 
 exports['default'] = Form;
 module.exports = exports['default'];
-//# sourceMappingURL=form.js.map

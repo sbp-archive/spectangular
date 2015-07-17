@@ -46,4 +46,3 @@ var Select = (function (_Menu) {
 
 exports.Select = Select;
 exports['default'] = Select;
-//# sourceMappingURL=select.js.map

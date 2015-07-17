@@ -70,4 +70,3 @@ var Tab = (function (_Component) {
 
 exports['default'] = Tab;
 module.exports = exports['default'];
-//# sourceMappingURL=tab.js.map

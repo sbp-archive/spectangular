@@ -43,4 +43,3 @@ var Checkbox = (function (_Component) {
 
 exports.Checkbox = Checkbox;
 exports['default'] = Checkbox;
-//# sourceMappingURL=checkbox.js.map

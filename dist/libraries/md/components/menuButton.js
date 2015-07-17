@@ -41,4 +41,3 @@ var MenuButton = (function (_Button) {
 
 exports.MenuButton = MenuButton;
 exports['default'] = MenuButton;
-//# sourceMappingURL=menuButton.js.map

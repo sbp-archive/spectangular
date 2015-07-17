@@ -41,4 +41,3 @@ var Button = (function (_Component) {
 
 exports.Button = Button;
 exports['default'] = Button;
-//# sourceMappingURL=button.js.map

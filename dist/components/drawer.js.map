@@ -1,1 +1,0 @@
-{"version":3,"sources":["src/components/drawer.js"],"names":[],"mappings":";;;;;;;;;;;;;;;;2BAAsB,gBAAgB;;;;IAEjB,MAAM;YAAN,MAAM;;WAAN,MAAM;0BAAN,MAAM;;+BAAN,MAAM;;;SAAN,MAAM;;;qBAAN,MAAM","file":"src/components/drawer.js","sourcesContent":["import Container from './container.js';\n\nexport default class Drawer extends Container {}\n"]}

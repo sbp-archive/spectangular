@@ -84,4 +84,3 @@ var Button = (function (_Component) {
 
 exports['default'] = Button;
 module.exports = exports['default'];
-//# sourceMappingURL=button.js.map

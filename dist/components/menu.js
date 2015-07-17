@@ -84,4 +84,3 @@ var Menu = (function (_Container) {
 
 exports['default'] = Menu;
 module.exports = exports['default'];
-//# sourceMappingURL=menu.js.map

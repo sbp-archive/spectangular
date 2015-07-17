@@ -244,4 +244,3 @@ var Spectangular = (function () {
 
 exports['default'] = new Spectangular();
 module.exports = exports['default'];
-//# sourceMappingURL=spectangular.js.map

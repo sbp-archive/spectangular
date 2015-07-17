@@ -56,4 +56,3 @@ var Pagination = (function (_Container) {
 
 exports.Pagination = Pagination;
 exports['default'] = Pagination;
-//# sourceMappingURL=pagination.js.map

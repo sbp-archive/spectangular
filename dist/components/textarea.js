@@ -32,4 +32,3 @@ var Textarea = (function (_Textfield) {
 
 exports['default'] = Textarea;
 module.exports = exports['default'];
-//# sourceMappingURL=textarea.js.map

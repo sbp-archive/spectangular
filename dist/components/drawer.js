@@ -32,4 +32,3 @@ var Drawer = (function (_Container) {
 
 exports['default'] = Drawer;
 module.exports = exports['default'];
-//# sourceMappingURL=drawer.js.map

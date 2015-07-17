@@ -8,7 +8,7 @@ module.exports = function(grunt) {
 
         babel: {
             options: {
-                sourceMap: true,
+                sourceMap: false,
                 optional: ['spec.protoToAssign']
             },
             common: {

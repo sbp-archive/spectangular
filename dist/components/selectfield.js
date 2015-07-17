@@ -65,4 +65,3 @@ var Selectfield = (function (_Component) {
 
 exports['default'] = Selectfield;
 module.exports = exports['default'];
-//# sourceMappingURL=selectfield.js.map

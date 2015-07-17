@@ -30,9 +30,14 @@ var Textfield = (function (_Component) {
   }
 
   _createClass(Textfield, [{
+    key: 'getInputEl',
+    value: function getInputEl(componentEl) {
+      return componentEl.element(by.tagName('input'));
+    }
+  }, {
     key: 'defaultSelector',
     get: function get() {
-      return 'input';
+      return 'material-input-group';
     }
   }]);
 
@@ -41,4 +46,3 @@ var Textfield = (function (_Component) {
 
 exports.Textfield = Textfield;
 exports['default'] = Textfield;
-//# sourceMappingURL=textfield.js.map

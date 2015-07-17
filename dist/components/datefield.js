@@ -69,4 +69,3 @@ var Datefield = (function (_Container) {
 
 exports['default'] = Datefield;
 module.exports = exports['default'];
-//# sourceMappingURL=datefield.js.map

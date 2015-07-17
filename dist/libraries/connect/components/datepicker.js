@@ -30,19 +30,54 @@ var Datepicker = (function (_Container) {
   }
 
   _createClass(Datepicker, [{
+    key: 'setMode',
+    value: function setMode(mode) {
+      var selector;
+
+      switch (mode) {
+        case 'year':
+          selector = 'h3';
+          break;
+
+        case 'month':
+          selector = 'h2';
+          break;
+
+        case 'day':
+          selector = 'h1';
+          break;
+      }
+
+      this.modePickerEl.element(by.tagName(selector)).click();
+      return this;
+    }
+  }, {
+    key: 'defaultSelector',
+    get: function get() {
+      return '.material-datepicker-menu.material-opened > material-datepicker';
+    }
+  }, {
+    key: 'modePickerEl',
+    get: function get() {
+      return this.component.componentEl.element(by.css('.material-datepicker-date'));
+    }
+  }, {
     key: 'enabledYears',
     get: function get() {
-      throw 'Angular Material has no Datepicker and thus does not support the datefield';
+      this.setMode('year');
+      return this.component.componentEl.all(by.css('.material-datepicker-yearview .material-button:not([disabled="disabled"])'));
     }
   }, {
     key: 'enabledMonths',
     get: function get() {
-      throw 'Angular Material has no Datepicker and thus does not support the datefield';
+      this.setMode('month');
+      return this.component.componentEl.all(by.css('.material-datepicker-monthview .material-button:not([disabled="disabled"])'));
     }
   }, {
     key: 'enabledDays',
     get: function get() {
-      throw 'Angular Material has no Datepicker and thus does not support the datefield';
+      this.setMode('day');
+      return this.component.componentEl.all(by.css('.material-datepicker-dayview .material-button:not([disabled="disabled"])'));
     }
   }]);
 
@@ -50,4 +85,3 @@ var Datepicker = (function (_Container) {
 })(_containerJs2['default']);
 
 exports.Datepicker = Datepicker;
-//# sourceMappingURL=datepicker.js.map

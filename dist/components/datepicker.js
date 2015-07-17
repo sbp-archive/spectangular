@@ -124,4 +124,3 @@ var Datepicker = (function (_Container) {
 })(_containerJs2['default']);
 
 exports['default'] = Datepicker;
-//# sourceMappingURL=datepicker.js.map

@@ -6,6 +6,7 @@
     "name": "Tommy Maintz",
     "email": "tommy.maintz@gmail.com"
   },
+  "homepage": "https://github.com/schubergphilis/spectangular",
   "main": "dist/spectangular.js",
   "repository": {
     "type": "git",
@@ -27,5 +28,13 @@
   },
   "dependencies": {
     "babel": "^5.6.23"
-  }
+  },
+  "keywords": [
+    "angular",
+    "protractor",
+    "e2e", "testing",
+    "material",
+    "selenium",
+    "angular material"
+  ]
 }

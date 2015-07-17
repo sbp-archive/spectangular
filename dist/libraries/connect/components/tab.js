@@ -32,7 +32,7 @@ var Tab = (function (_Component) {
   _createClass(Tab, [{
     key: 'defaultSelector',
     get: function get() {
-      return 'md-tab-item';
+      return 'material-tab';
     }
   }]);
 
@@ -41,4 +41,3 @@ var Tab = (function (_Component) {
 
 exports.Tab = Tab;
 exports['default'] = Tab;
-//# sourceMappingURL=tab.js.map

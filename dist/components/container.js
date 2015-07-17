@@ -86,4 +86,3 @@ var Container = (function (_Component) {
 
 exports['default'] = Container;
 module.exports = exports['default'];
-//# sourceMappingURL=container.js.map

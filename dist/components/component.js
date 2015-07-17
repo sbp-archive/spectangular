@@ -99,4 +99,3 @@ var Component = (function () {
 
 exports['default'] = Component;
 module.exports = exports['default'];
-//# sourceMappingURL=component.js.map

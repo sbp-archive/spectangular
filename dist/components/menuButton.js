@@ -64,4 +64,3 @@ var MenuButton = (function (_Button) {
 
 exports['default'] = MenuButton;
 module.exports = exports['default'];
-//# sourceMappingURL=menuButton.js.map

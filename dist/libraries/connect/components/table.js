@@ -32,22 +32,22 @@ var Table = (function (_Container) {
   _createClass(Table, [{
     key: 'defaultSelector',
     get: function get() {
-      return 'table.md-data-table';
+      return 'material-gridlist';
     }
   }, {
     key: 'rowSelector',
     get: function get() {
-      return 'tbody > tr';
+      return 'material-gridlist-content material-row';
     }
   }, {
     key: 'cellSelector',
     get: function get() {
-      return 'tbody > tr > td';
+      return 'material-cell';
     }
   }, {
     key: 'headerSelector',
     get: function get() {
-      return 'thead > tr > th';
+      return 'material-gridlist-headers material-cell';
     }
   }]);
 
@@ -56,4 +56,3 @@ var Table = (function (_Container) {
 
 exports.Table = Table;
 exports['default'] = Table;
-//# sourceMappingURL=table.js.map
