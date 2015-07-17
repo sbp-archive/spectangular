@@ -1,15 +1,17 @@
 {
   "name": "spectangular",
   "description": "Simple Protractor e2e Component Testing for Angular",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "author": {
     "name": "Tommy Maintz",
     "email": "tommy.maintz@gmail.com"
   },
-  "contributors": [{
-    "name": "Martijn Gijsberti Hodenpijl",
-    "email": "mgijsberti@gmail.com"
-  }],
+  "contributors": [
+    {
+      "name": "Martijn Gijsberti Hodenpijl",
+      "email": "mgijsberti@gmail.com"
+    }
+  ],
   "homepage": "https://github.com/schubergphilis/spectangular",
   "main": "dist/spectangular.js",
   "repository": {
