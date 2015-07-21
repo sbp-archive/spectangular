@@ -32,8 +32,8 @@ var Checkbox = (function (_Component) {
   _createClass(Checkbox, [{
     key: 'isChecked',
     value: function isChecked(checkboxEl) {
-      return checkboxEl.getAttribute('class').then(function (classVal) {
-        return /md-checked/.test(classVal);
+      return checkboxEl.getAttribute('aria-checked').then(function (classVal) {
+        return /true/.test(classVal);
       });
     }
   }]);
