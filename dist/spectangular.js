@@ -101,8 +101,22 @@ var Spectangular = (function () {
   }
 
   _createClass(Spectangular, [{
-    key: 'loadPage',
-    value: function loadPage(url) {
+    key: 'loadPageAndWait',
+
+    /**
+     * Page loading of non-angular pages. This method is called before each tests in the beforeEach method.
+     *
+     * The page loads the url and waits until the web element is loaded. This method is used for
+     * Angular applications which use AMD module pattern to load asynchronyously modules. See
+     * https://github.com/angular/protractor/issues/66 for discussion.
+     *
+     * Example:
+     *  Spectangular.loadPage('http://www.google.com','input#search');
+     *
+     * @param url of the page
+     * @param waitForElementSelector, css selector for the element
+     */
+    value: function loadPageAndWait(url) {
       var waitForElementSelector = arguments.length <= 1 || arguments[1] === undefined ? 'body' : arguments[1];
 
       browser.driver.get('' + this.baseUrl + url);
@@ -118,7 +132,53 @@ var Spectangular = (function () {
       }, 50000, 'Was not able to load the application!');
     }
   }, {
+    key: 'loadPageRefresh',
+
+    /**
+     * Refreshes the page and loads again the page. This is used in combination with closePage. This method reloads
+     * the Angular context before continue with the loading the page. This method is useful if tests use the same fixture
+     * and the test need a fully reload of the fixture and Angular context.
+     *
+     * @param url
+     * @param waitForElementSelector
+     */
+    value: function loadPageRefresh(url) {
+      var waitForElementSelector = arguments.length <= 1 || arguments[1] === undefined ? 'body' : arguments[1];
+
+      browser.driver.navigate().refresh();
+      this.loadPage(url, waitForElementSelector);
+    }
+  }, {
+    key: 'loadPage',
+
+    /**
+     * Page loading of angular pages. This method is called before each tests in the beforeEach method.
+     *
+     * The page loads the url. Protractor waits until the page is loaded and expect that the web element is loaded.
+     * This method is used for application which do NOT use AMD module pattern and load the Angular application with
+     * a ng-app directive.
+     *
+     * Example:
+     *  Spectangular.loadAngularPage('http://www.my-angular-app.nl','.toolbar');
+     *
+     * @param url of the page
+     * @param waitForElementSelector, css selector for the element
+     */
+    value: function loadPage(url) {
+      var waitForElementSelector = arguments.length <= 1 || arguments[1] === undefined ? 'body' : arguments[1];
+
+      browser.get('' + this.baseUrl + url);
+      expect(element(by.css(waitForElementSelector)).isPresent()).toBe(true);
+    }
+  }, {
     key: 'getImplementationFor',
+
+    /**
+     * Returns the specific implementation class for the current library.
+     *
+     * @param clsName class name
+     * @returns {*} or an exception if the clsName does not exits
+     */
     value: function getImplementationFor(clsName) {
       var LibraryImplementation = this.library[clsName];
       if (LibraryImplementation === undefined) {
