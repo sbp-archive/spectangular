@@ -1,6 +1,5 @@
 /**
- * Component class is a parent for classes that implement sendKeys and click. For example input, textarea,
- * select and checkbox.
+ * Component class is a parent for all classes in Spectangular and contains the API for all actions.
  *
  * The component element is specified in the configuration (selector).
  *
@@ -99,6 +98,13 @@ var Component = (function () {
     }
   }, {
     key: 'componentEl',
+
+    /**
+     *  Each component has a single unique web element, which is stored in the componentEl. Note that
+     *  the componentEl is a promise to a Selenium web element.
+     *
+     * @returns {promise to Selenium web element}
+     */
     get: function get() {
       if (!this._componentEl) {
         var componentElByConfig = this.getComponentElByConfig(this.config);

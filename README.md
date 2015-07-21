@@ -38,45 +38,44 @@ There are small differences between ECMAscript 5 and 6 in declaring the spectang
 
 ## ECMAscript 6 
 <pre><code class="language-javascript" >
-    import Spectangular from '../node_modules/spectangular/dist/spectangular.js';
-    import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
+import Spectangular from '../node_modules/spectangular/dist/spectangular.js';
+import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
 </code></pre>
 
 ## ECMAscript 5 
 <pre><code class="language-javascript" >
-    var Spectangular = require('../node_modules/spectangular/dist/spectangular.js'');
-    var SpectangularMdLibrary = require('../node_modules/spectangular/dist/libraries/md/md.js');
+var Spectangular = require('../node_modules/spectangular/dist/spectangular.js'');
+var SpectangularMdLibrary = require('../node_modules/spectangular/dist/libraries/md/md.js');
 </code></pre>
 
 
 The example (ECMA6script) :  
 
 <pre><code class="language-javascript" >
-    import Spectangular from '../node_modules/spectangular/dist/spectangular.js';
-    import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
+import Spectangular from '../node_modules/spectangular/dist/spectangular.js';
+import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
 
-    Spectangular.baseUrl = 'http://localhost:8080';
-    Spectangular.library = SpectangularMdLibrary
+Spectangular.baseUrl = 'http://localhost:8080';
+Spectangular.library = SpectangularMdLibrary
 
-    //loads the startpage        
-    Spectangular.loadPage('/#/start/', 'input#username');
-           
-    //selectors and data for the form       
-    var buttonText = 'Save';    
-    var formData = [
-    {"model": "user.username", "value": "admin", "type": "textfield"},
-    {"model": "user.password", "value": "welcome", "type": "textfield"}
-    ]
-    
-    //execution
-   Spectangular.form({
-    selector: '[name=\"userForm\"]',
-    data: formData
-    })
-   
-   //save the form
-    Spectangular.button({text: buttonText}).click();
-       
+//loads the startpage        
+Spectangular.loadPage('/#/start/', 'input#username');
+
+//selectors and data for the form       
+var buttonText = 'Save';
+var formData = [
+  {"model": "user.username", "value": "admin", "type": "textfield"},
+  {"model": "user.password", "value": "welcome", "type": "textfield"}
+]
+
+//execution
+Spectangular.form({
+  selector: '[name=\"userForm\"]',
+  data: formData
+})
+
+//save the form
+Spectangular.button({text: buttonText}).click();       
 </code></pre>
 
 ## Spectangular
@@ -85,19 +84,19 @@ The Spectangular library is declared in the package.json in your application and
 Make sure that the **dist** folder is used !
 
 <pre><code class="language-javascript" >
-    import Spectangular from '../node_modules/spectangular/dist/spectangular.js';
-    import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
+import Spectangular from '../node_modules/spectangular/dist/spectangular.js';
+import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
 
-    Spectangular.baseUrl = 'http://localhost:8080';
-    Spectangular.library = SpectangularMdLibrary;
+Spectangular.baseUrl = 'http://localhost:8080';
+Spectangular.library = SpectangularMdLibrary;
 </code></pre>
 
  
 ## Adapters
 
 <pre><code class="language-javascript" >
-   import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
-   Spectangular.library = SpectangularMdLibrary;
+import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js';
+Spectangular.library = SpectangularMdLibrary;
 </code></pre>
 
 Spectangular is extensible with different adapters for the support different frontend libraries. 
@@ -106,7 +105,7 @@ At the start of the test you have to declare the library module.
 ## Spectangular
 
 `import * as SpectangularMdLibrary from '../node_modules/spectangular/dist/libraries/md/md.js'`
-` Spectangular.library = SpectangularMdLibrary`
+`Spectangular.library = SpectangularMdLibrary`
 
 ## Base Url
 
@@ -124,17 +123,15 @@ with id 'username' is loaded on the start page.
 ## Form 
 
 <pre><code class="language-javascript" >
+var formData = [
+  {"model": "user.username", "value": "admin", "type": "textfield"},
+  {"model": "user.password", "value": "welcome", "type": "textfield"}
+]
 
-    var formData = [
-      {"model": "user.username", "value": "admin", "type": "textfield"},
-      {"model": "user.password", "value": "welcome", "type": "textfield"}
-    ]
-    
-    Spectangular.form({
-      selector: '[name=\"userForm\"]',
-      data: formData
-    })   
-
+Spectangular.form({
+  selector: '[name=\"userForm\"]',
+  data: formData
+})
 </code></pre>
  
 Spectangular.form is used for navigation and interaction with form input fields.
@@ -185,7 +182,7 @@ You cannot use the form but need to use unique css selectors for each field.
 
 For example:
 
-` Spectangular.input({selector: '[ng-click=\"showListBottomSheet($event)\"]'}).sendKeys('Hi!');`
+`Spectangular.input({selector: '[ng-click=\"showListBottomSheet($event)\"]'}).sendKeys('Hi!');`
 
 ## value attribute
 
@@ -197,16 +194,16 @@ have the value 'admin' and the password field will have the value 'welcome'.
 Open the menu in a table row.
 
 <pre><code class="language-javascript" >
-    Spectangular
-    .table({selector: 'material-gridlist.overview'})
-    .getRowMenuButton(0)
-    .openAndClickItem({text: 'Update'});
+Spectangular
+  .table({selector: 'material-gridlist.overview'})
+  .getRowMenuButton(0)
+  .openAndClickItem({text: 'Update'});
 </code></pre>
 
 ## table
 
-`    Spectangular
-     .table({selector: 'material-gridlist.overview'})
+`Spectangular
+  .table({selector: 'material-gridlist.overview'})
 `
 
 Finds the table with css selector 'material-gridlist.overview'.
@@ -216,7 +213,6 @@ Finds the table with css selector 'material-gridlist.overview'.
 `.getRowMenuButton(0)`
 
 Gets the first row (0) of the table
-
 
 ## openAndClickItem({text: 'Update'})
 
@@ -228,9 +224,9 @@ Opens the menu item 'Update' and clicks on the menu item.
 This example opens a drawer, waits until the drawer is visible and switches to a tab 'Out'
 
 <pre><code class="language-javascript" >
-   Spectangular.drawer({selector: '[drawer-id=\"drawer-messages-add\"]'})
-   .whenVisible();
-   .switchTab({label: 'Out'});
+Spectangular.drawer({selector: '[drawer-id=\"drawer-messages-add\"]'})
+  .whenVisible()
+  .switchTab({label: 'Out'});
 </code></pre>
 
 ## whenVisible
