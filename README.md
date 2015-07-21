@@ -34,7 +34,7 @@ and transpile the code automatically into the dist folder.
 This example explains how to write an e2e test for a login page. The login page contains a form with two input fields, one
 for the username and one for the password and a submit button. The page starts on http://localhost:8080/#/inloggen.
 
-There are small differences between ECMAscript 5 and 6 in declaring the spectangular library 
+There are small differences between ECMAscript 5 and 6 when declaring the spectangular library. 
 
 ## ECMAscript 6 
 <pre><code class="language-javascript" >
@@ -100,7 +100,7 @@ Spectangular.library = SpectangularMdLibrary;
 </code></pre>
 
 Spectangular is extensible with different adapters for the support different frontend libraries. 
-At the start of the test you have to declare the library module. 
+At the start of the test you have to declare adapter as a the library module. 
 
 ## Spectangular
 
@@ -136,8 +136,6 @@ Spectangular.form({
  
 Spectangular.form is used for navigation and interaction with form input fields.
   
-The formData variable is a JSON object with the configuration for the formHelper. Each row defines the field and the 
-value is will have during the test.
  
 ## CSS selector
 
@@ -150,7 +148,8 @@ of the form, which contains all the input fields.
 
 ## type attribute
 
-The type defines the type of input field. The supported type of fields are:
+The formData variable is a JSON object with the configuration for the formHelper.  The type defines the type of input 
+field. The supported type of fields are:
 
  - textfield
  - textarea
