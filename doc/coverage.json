@@ -1,0 +1,87 @@
+{
+  "coverage": "10.6%",
+  "expectCount": 132,
+  "actualCount": 14,
+  "files": {
+    "src/components/button.js": {
+      "expectCount": 6,
+      "actualCount": 0
+    },
+    "src/components/checkbox.js": {
+      "expectCount": 3,
+      "actualCount": 0
+    },
+    "src/components/component.js": {
+      "expectCount": 15,
+      "actualCount": 10
+    },
+    "src/components/container.js": {
+      "expectCount": 4,
+      "actualCount": 0
+    },
+    "src/components/datefield.js": {
+      "expectCount": 3,
+      "actualCount": 0
+    },
+    "src/components/datepicker.js": {
+      "expectCount": 10,
+      "actualCount": 0
+    },
+    "src/components/dialog.js": {
+      "expectCount": 4,
+      "actualCount": 0
+    },
+    "src/components/drawer.js": {
+      "expectCount": 1,
+      "actualCount": 0
+    },
+    "src/components/form.js": {
+      "expectCount": 7,
+      "actualCount": 0
+    },
+    "src/components/menu.js": {
+      "expectCount": 6,
+      "actualCount": 0
+    },
+    "src/components/menuButton.js": {
+      "expectCount": 5,
+      "actualCount": 0
+    },
+    "src/components/pagination.js": {
+      "expectCount": 10,
+      "actualCount": 0
+    },
+    "src/components/searchfield.js": {
+      "expectCount": 2,
+      "actualCount": 0
+    },
+    "src/components/select.js": {
+      "expectCount": 1,
+      "actualCount": 0
+    },
+    "src/components/selectfield.js": {
+      "expectCount": 3,
+      "actualCount": 0
+    },
+    "src/spectangular.js": {
+      "expectCount": 29,
+      "actualCount": 4
+    },
+    "src/components/tab.js": {
+      "expectCount": 5,
+      "actualCount": 0
+    },
+    "src/components/table.js": {
+      "expectCount": 14,
+      "actualCount": 0
+    },
+    "src/components/textarea.js": {
+      "expectCount": 1,
+      "actualCount": 0
+    },
+    "src/components/textfield.js": {
+      "expectCount": 3,
+      "actualCount": 0
+    }
+  }
+}

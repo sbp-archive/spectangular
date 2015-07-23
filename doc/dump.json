@@ -1,0 +1,4030 @@
+[
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/button.js",
+    "memberof": null,
+    "longname": "src/components/button.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Component from './component.js';\n\nexport default class Button extends Component {\n  getComponentElByConfig(config) {\n    if (config.icon) {\n      return this.byIcon(config.icon);\n    }\n    else if (config.text) {\n      return this.byButtonText(config.text);\n    }\n    return null;\n  }\n\n  byIcon(icon) {\n    return this.rootEl.all(by.css(this.selector)).filter((buttonEl) => {\n      return this.getButtonIcon(buttonEl).then((buttonIcon) => {\n        return buttonIcon.toLowerCase().trim() === icon.toLowerCase().trim();\n      });\n    });\n  }\n\n  byButtonText(text) {\n    return this.rootEl.all(by.css(this.selector)).filter((buttonEl) => {\n      return this.getButtonText(buttonEl).then((buttonText) => {\n        return buttonText.toLowerCase().trim() === text.toLowerCase().trim();\n      });\n    });\n  }\n\n  getButtonIcon(buttonEl) {\n    if (this.impl.getButtonIcon === undefined) {\n      throw 'The library you use does not support getButtonIcon';\n    }\n    return this.impl.getButtonIcon(buttonEl);\n  }\n\n  getButtonText(buttonEl) {\n    if (this.impl.getButtonText !== undefined) {\n      return this.impl.getButtonText(buttonEl);\n    }\n    return buttonEl.getText();\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Button",
+    "memberof": "src/components/button.js",
+    "longname": "src/components/button.js~Button",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/button.js",
+    "importStyle": "Button",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/component.js~Component"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getComponentElByConfig",
+    "memberof": "src/components/button.js~Button",
+    "longname": "src/components/button.js~Button#getComponentElByConfig",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "byIcon",
+    "memberof": "src/components/button.js~Button",
+    "longname": "src/components/button.js~Button#byIcon",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [
+      {
+        "name": "icon",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "byButtonText",
+    "memberof": "src/components/button.js~Button",
+    "longname": "src/components/button.js~Button#byButtonText",
+    "access": null,
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getButtonIcon",
+    "memberof": "src/components/button.js~Button",
+    "longname": "src/components/button.js~Button#getButtonIcon",
+    "access": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "params": [
+      {
+        "name": "buttonEl",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getButtonText",
+    "memberof": "src/components/button.js~Button",
+    "longname": "src/components/button.js~Button#getButtonText",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "params": [
+      {
+        "name": "buttonEl",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/checkbox.js",
+    "memberof": null,
+    "longname": "src/components/checkbox.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Component from './component.js';\n\nexport default class Checkbox extends Component {\n  setValue(value) {\n    this.isChecked(this.componentEl).then((checked) => {\n      if (value !== checked) {\n        this.componentEl.click();\n      }\n    });\n  }\n\n  isChecked(checkboxEl) {\n    if (this.impl.isChecked === undefined) {\n      throw 'The library should implement isChecked(checkboxEl) on its Checkbox implementation';\n    }\n    return this.impl.isChecked(checkboxEl);\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Checkbox",
+    "memberof": "src/components/checkbox.js",
+    "longname": "src/components/checkbox.js~Checkbox",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/checkbox.js",
+    "importStyle": "Checkbox",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/component.js~Component"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setValue",
+    "memberof": "src/components/checkbox.js~Checkbox",
+    "longname": "src/components/checkbox.js~Checkbox#setValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "isChecked",
+    "memberof": "src/components/checkbox.js~Checkbox",
+    "longname": "src/components/checkbox.js~Checkbox#isChecked",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "params": [
+      {
+        "name": "checkboxEl",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/component.js",
+    "memberof": null,
+    "longname": "src/components/component.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 17,
+    "content": "/**\n * Component class is a parent for all classes in Spectangular and contains the API for all actions.\n *\n * The component element is specified in the configuration (selector).\n *\n * Example:\n *   Spectangular.button({selector: '[ng-click=\\\"showListBottomSheet($event)\\\"]'}).click();\n *\n * The selector is css selector for a web element with an attribute ng-click with value showListBottomSheet($event).\n * The web element is the componentEl.\n *\n * The ImplementationCls is a class for a specific implementation. For instance angular-material\n * has a specific component class. The base component class is injected into the implementation class\n * during construction. In this way implementation and base classes are loosely coupled.\n *\n */\nexport default class Component {\n  constructor(ImplementationCls, config = {}) {\n    this.config = config;\n    this.impl = new ImplementationCls(this);\n  }\n\n  /**\n   *  Each component has a single unique web element, which is stored in the componentEl. Note that\n   *  the componentEl is a promise to a Selenium web element.\n   *\n   * @returns {promise to Selenium web element}\n   */\n  get componentEl() {\n    if (!this._componentEl) {\n      let componentElByConfig = this.getComponentElByConfig(this.config);\n      if (componentElByConfig) {\n        this._componentEl = componentElByConfig;\n      } else if (this.selector) {\n        this._componentEl = this.rootEl.element(by.css(this.selector));\n      } else {\n        throw 'Unable to get componentEl based on config or selector.';\n      }\n    }\n\n    return this._componentEl;\n  }\n\n  /**\n   * Extension point for componentEl. A subclass of a component may implement this for a specific\n   * configuration.\n   *\n   * @returns {null}\n   */\n  getComponentElByConfig() {\n    return null;\n  }\n\n  /**\n   * Obligatory for each component. The method implements the default selector in case the configuration does not\n   * contain a selector.\n   *\n   * @returns {*|null} throws exception if not implemented.\n   */\n  get defaultSelector() {\n    if (this.impl.defaultSelector === undefined) {\n      throw 'The library you use should define a defaultSelector on its Component implementations';\n    }\n    return this.impl.defaultSelector || null;\n  }\n\n  get selector() {\n    return this.config.selector || this.defaultSelector;\n  }\n\n  /**\n   * Returns the root element. The root element is the container element which contains the component element(s).\n   *\n   * For instance, a form contains a input element.\n   * form = rootEl\n   * input = componentEl\n   *\n   * @returns {*} the rootElement or the body of the html page.\n   */\n  get rootEl() {\n    return this.config.rootEl || this.bodyEl;\n  }\n\n  get bodyEl() {\n    return element(by.css('body'));\n  }\n\n  /**\n   * The configuration can contain a time out. If not, the default time out is selected. The time out is used\n   * in the whenVisible and whenInvisble methods.\n   *\n   * @returns {*|Number|number}\n   */\n  get timeout() {\n    return this.config.timeout || 5000;\n  }\n\n  /**\n   * Clicks on the component element.\n   *\n   * @returns {Component}\n   */\n  click() {\n    this.componentEl.click();\n    return this;\n  }\n\n  /**\n   * Sets the value of the component element.\n   *\n   * @param value, the value of the element.\n   * @returns {Component}\n   */\n  sendKeys(value) {\n    this.componentEl.sendKeys(value);\n    return this;\n  }\n\n  /**\n   * Waits for the web element to be visible.\n   *\n   * @returns {Component}\n   */\n  whenVisible() {\n    browser.wait(protractor.ExpectedConditions.visibilityOf(this.componentEl), this.timeout);\n    return this;\n  }\n\n  /**\n   * Waits for the wb element to be invisible.\n   *\n   * @returns {Component}\n   */\n  whenInvisible() {\n    var EC = protractor.ExpectedConditions;\n    browser.wait(EC.or(\n      EC.stalenessOf(this.componentEl),\n      EC.invisibilityOf(this.componentEl)\n    ), this.timeout);\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Component",
+    "memberof": "src/components/component.js",
+    "longname": "src/components/component.js~Component",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/component.js",
+    "importStyle": "Component",
+    "description": "Component class is a parent for all classes in Spectangular and contains the API for all actions.\n\nThe component element is specified in the configuration (selector).\n\nExample:\n  Spectangular.button({selector: '[ng-click=\\\"showListBottomSheet($event)\\\"]'}).click();\n\nThe selector is css selector for a web element with an attribute ng-click with value showListBottomSheet($event).\nThe web element is the componentEl.\n\nThe ImplementationCls is a class for a specific implementation. For instance angular-material\nhas a specific component class. The base component class is injected into the implementation class\nduring construction. In this way implementation and base classes are loosely coupled.",
+    "lineNumber": 17,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [
+      {
+        "name": "ImplementationCls",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "config",
+        "optional": true,
+        "types": [
+          "{}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "config",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#config",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "impl",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#impl",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "componentEl",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#componentEl",
+    "access": null,
+    "description": " Each component has a single unique web element, which is stored in the componentEl. Note that\n the componentEl is a promise to a Selenium web element.",
+    "lineNumber": 29,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{promise to Selenium web element}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "promise to Selenium web element"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_componentEl",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#_componentEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_componentEl",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#_componentEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getComponentElByConfig",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#getComponentElByConfig",
+    "access": null,
+    "description": "Extension point for componentEl. A subclass of a component may implement this for a specific\nconfiguration.",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{null}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "null"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "defaultSelector",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#defaultSelector",
+    "access": null,
+    "description": "Obligatory for each component. The method implements the default selector in case the configuration does not\ncontain a selector.",
+    "lineNumber": 60,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*|null} throws exception if not implemented."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*",
+        "null"
+      ],
+      "spread": false,
+      "description": "throws exception if not implemented."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "selector",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#selector",
+    "access": null,
+    "description": null,
+    "lineNumber": 67,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "rootEl",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#rootEl",
+    "access": null,
+    "description": "Returns the root element. The root element is the container element which contains the component element(s).\n\nFor instance, a form contains a input element.\nform = rootEl\ninput = componentEl",
+    "lineNumber": 80,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*} the rootElement or the body of the html page."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "the rootElement or the body of the html page."
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "bodyEl",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#bodyEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 84,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "timeout",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#timeout",
+    "access": null,
+    "description": "The configuration can contain a time out. If not, the default time out is selected. The time out is used\nin the whenVisible and whenInvisble methods.",
+    "lineNumber": 94,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*|Number|number}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*",
+        "Number",
+        "number"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "click",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#click",
+    "access": null,
+    "description": "Clicks on the component element.",
+    "lineNumber": 103,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Component}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Component"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "sendKeys",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#sendKeys",
+    "access": null,
+    "description": "Sets the value of the component element.",
+    "lineNumber": 114,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Component}"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "value,",
+        "description": "the value of the element."
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Component"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "whenVisible",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#whenVisible",
+    "access": null,
+    "description": "Waits for the web element to be visible.",
+    "lineNumber": 124,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Component}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Component"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "whenInvisible",
+    "memberof": "src/components/component.js~Component",
+    "longname": "src/components/component.js~Component#whenInvisible",
+    "access": null,
+    "description": "Waits for the wb element to be invisible.",
+    "lineNumber": 134,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{Component}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Component"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/container.js",
+    "memberof": null,
+    "longname": "src/components/container.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Component from './component.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Container extends Component {\n  clickComponent(config) {\n    if (!config.selector) {\n      throw `When you click a component inside of a container, a config with selector is expected`;\n    }\n\n    Object.assign(config, {\n      rootEl: this.componentEl\n    });\n\n    Spectangular.component(config).click();\n    return this;\n  }\n\n  clickButton(config = {}) {\n    if (!config.text && !config.selector) {\n      throw `When you click a button inside of a container, a config with either text or selector is expected`;\n    }\n\n    Object.assign(config, {\n      rootEl: this.componentEl\n    });\n\n    Spectangular.button(config).click();\n    return this;\n  }\n\n  switchTab(config = {}) {\n    if (!config.text && !config.selector && config.index === undefined) {\n      throw `When you click a tab inside of a container, a config with either text, selector or index is expected`;\n    }\n\n    Object.assign(config, {\n      rootEl: this.componentEl\n    });\n\n    Spectangular.tab(config).click();\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Container",
+    "memberof": "src/components/container.js",
+    "longname": "src/components/container.js~Container",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/container.js",
+    "importStyle": "Container",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/component.js~Component"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickComponent",
+    "memberof": "src/components/container.js~Container",
+    "longname": "src/components/container.js~Container#clickComponent",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickButton",
+    "memberof": "src/components/container.js~Container",
+    "longname": "src/components/container.js~Container#clickButton",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "optional": true,
+        "types": [
+          "{}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "switchTab",
+    "memberof": "src/components/container.js~Container",
+    "longname": "src/components/container.js~Container#switchTab",
+    "access": null,
+    "description": null,
+    "lineNumber": 31,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "optional": true,
+        "types": [
+          "{}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/datefield.js",
+    "memberof": null,
+    "longname": "src/components/datefield.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Datefield extends Container {\n  get clickTargetSelector() {\n    if (this.impl.clickTargetSelector !== undefined) {\n      return this.impl.clickTargetSelector;\n    }\n\n    return null;\n  }\n\n  setValue(value) {\n    var componentEl = this.componentEl;\n    var clickTargetSelector = this.clickTargetSelector;\n    var clickTargetEl = componentEl;\n\n    if (clickTargetSelector) {\n      clickTargetEl = componentEl.element(by.css(clickTargetSelector));\n    }\n    clickTargetEl.click();\n\n    Spectangular.datepicker({\n      datefield: this\n    }).setDate(value);\n\n    this.bodyEl.click();\n\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Datefield",
+    "memberof": "src/components/datefield.js",
+    "longname": "src/components/datefield.js~Datefield",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/datefield.js",
+    "importStyle": "Datefield",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "clickTargetSelector",
+    "memberof": "src/components/datefield.js~Datefield",
+    "longname": "src/components/datefield.js~Datefield#clickTargetSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setValue",
+    "memberof": "src/components/datefield.js~Datefield",
+    "longname": "src/components/datefield.js~Datefield#setValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/datepicker.js",
+    "memberof": null,
+    "longname": "src/components/datepicker.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\n\nexport var monthMap = {\n  0: 'January',\n  1: 'February',\n  2: 'March',\n  3: 'April',\n  4: 'May',\n  5: 'June',\n  6: 'July',\n  7: 'August',\n  8: 'September',\n  9: 'October',\n  10: 'November',\n  11: 'December'\n};\n\nexport default class Datepicker extends Container {\n  get enabledYears() {\n    if (this.impl.enabledYears === undefined) {\n      throw 'The library you use should define a getter for enabledYears on its Datepicker';\n    }\n    return this.impl.enabledYears;\n  }\n\n  get enabledMonths() {\n    if (this.impl.enabledMonths === undefined) {\n      throw 'The library you use should define a getter for enabledMonths on its Datepicker';\n    }\n    return this.impl.enabledMonths;\n  }\n\n  get enabledDays() {\n    if (this.impl.enabledDays === undefined) {\n      throw 'The library you use should define a getter for enabledDays on its Datepicker';\n    }\n    return this.impl.enabledDays;\n  }\n\n  setDate(value) {\n    var date = new Date(value);\n\n    var year = date.getFullYear();\n    var month = date.getMonth();\n    var day = date.getDate();\n\n    this.setYear(year);\n    this.setMonth(month);\n    this.setDay(day);\n  }\n\n  setYear(year) {\n    this.clickItemByValue(this.enabledYears, year);\n    return this;\n  }\n\n  setMonth(month) {\n    this.clickItemByValue(this.enabledMonths, monthMap[month]);\n    return this;\n  }\n\n  setDay(day) {\n    this.clickItemByValue(this.enabledDays, day);\n    return this;\n  }\n\n  clickItemByValue(items, value) {\n    return items.filter((item) => {\n      return item.getText().then((text) => {\n        return text.toLowerCase().trim() === `${value}`.toLowerCase().trim();\n      });\n    })\n    .then((filteredItems) => {\n      if (filteredItems.length === 1) {\n        filteredItems[0].click();\n      }\n      else if (!filteredItems.length) {\n        throw `${value} is not within valid range. Test fails.`;\n      }\n      else {\n        throw `${value} is not unique. Test fails.`;\n      }\n    });\n  }\n}\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "monthMap",
+    "memberof": "src/components/datepicker.js",
+    "longname": "src/components/datepicker.js~monthMap",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/datepicker.js",
+    "importStyle": "{monthMap}",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Datepicker",
+    "memberof": "src/components/datepicker.js",
+    "longname": "src/components/datepicker.js~Datepicker",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/datepicker.js",
+    "importStyle": "Datepicker",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "enabledYears",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#enabledYears",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "enabledMonths",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#enabledMonths",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "enabledDays",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#enabledDays",
+    "access": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setDate",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#setDate",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setYear",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#setYear",
+    "access": null,
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "params": [
+      {
+        "name": "year",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setMonth",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#setMonth",
+    "access": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "params": [
+      {
+        "name": "month",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setDay",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#setDay",
+    "access": null,
+    "description": null,
+    "lineNumber": 62,
+    "undocument": true,
+    "params": [
+      {
+        "name": "day",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickItemByValue",
+    "memberof": "src/components/datepicker.js~Datepicker",
+    "longname": "src/components/datepicker.js~Datepicker#clickItemByValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 67,
+    "undocument": true,
+    "params": [
+      {
+        "name": "items",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/dialog.js",
+    "memberof": null,
+    "longname": "src/components/dialog.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\n\nexport default class Dialog extends Container {\n  getComponentElByConfig(config) {\n    if (config.type) {\n      return this.byDialogType(config.type);\n    }\n    return null;\n  }\n\n  byDialogType(type) {\n    return this.rootEl.all(by.css(this.selector)).filter((dialogEl) => {\n      return this.getDialogType(dialogEl).then((dialogType) => {\n        return dialogType.toLowerCase().trim() === type.toLowerCase().trim();\n      });\n    });\n  }\n\n  getDialogType(dialogEl) {\n    if (this.impl.getDialogType === undefined) {\n      throw 'The library you use does not support getDialogType';\n    }\n    return this.impl.getDialogType(dialogEl);\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Dialog",
+    "memberof": "src/components/dialog.js",
+    "longname": "src/components/dialog.js~Dialog",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/dialog.js",
+    "importStyle": "Dialog",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getComponentElByConfig",
+    "memberof": "src/components/dialog.js~Dialog",
+    "longname": "src/components/dialog.js~Dialog#getComponentElByConfig",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "byDialogType",
+    "memberof": "src/components/dialog.js~Dialog",
+    "longname": "src/components/dialog.js~Dialog#byDialogType",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "params": [
+      {
+        "name": "type",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getDialogType",
+    "memberof": "src/components/dialog.js~Dialog",
+    "longname": "src/components/dialog.js~Dialog#getDialogType",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "params": [
+      {
+        "name": "dialogEl",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/drawer.js",
+    "memberof": null,
+    "longname": "src/components/drawer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\n\nexport default class Drawer extends Container {}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Drawer",
+    "memberof": "src/components/drawer.js",
+    "longname": "src/components/drawer.js~Drawer",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/drawer.js",
+    "importStyle": "Drawer",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/form.js",
+    "memberof": null,
+    "longname": "src/components/form.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Form extends Container {\n  static validate(data) {\n    for (var index in data) {\n      if (data.hasOwnProperty(index)) {\n        var row = data[index];\n        if (!row.hasOwnProperty('model')) {\n          throw 'Test specification does not have a model';\n        }\n        if (!row.hasOwnProperty('value')) {\n          throw 'Test specification does not have value';\n        }\n        if (!row.hasOwnProperty('type')) {\n          throw 'Test specification does not have a type';\n        }\n      }\n    }\n\n    return true;\n  }\n\n  constructor(impl, config = {}) {\n    super(impl, config);\n\n    if (config.data) {\n      this.createFields(config.data);\n      this.setValues(config.data);\n    } else if (config.fields) {\n      this.createFields(config.fields);\n    } else {\n      throw 'A form needs to have either data (containing fields) or fields specified on the configuration';\n    }\n  }\n\n  setValues(data) {\n    if (!Form.validate(data)) {\n      throw 'The data that you are trying to set to this form is not valid';\n    }\n\n    data.forEach((item) => {\n      let field = this.fields[item.model];\n      if (field) {\n        field.setValue(item.value);\n      }\n    });\n\n    return this;\n  }\n\n  getValues() {\n    var values = {};\n    this.fields.forEach((field) => {\n      values[field.model] = field.getValue();\n    });\n    return values;\n  }\n\n  createFields(data) {\n    this.fields = {};\n\n    data.forEach((item) => {\n      if (!Spectangular[item.type]) {\n        throw `Field type ${item.type} is not valid.`;\n      }\n\n      this.fields[item.model] = Spectangular[item.type]({\n        rootEl: this.componentEl,\n        selector: `[ng-model='${item.model}']`\n      });\n    });\n\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Form",
+    "memberof": "src/components/form.js",
+    "longname": "src/components/form.js~Form",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/form.js",
+    "importStyle": "Form",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "validate",
+    "memberof": "src/components/form.js~Form",
+    "longname": "src/components/form.js~Form.validate",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "params": [
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/form.js~Form",
+    "longname": "src/components/form.js~Form#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "params": [
+      {
+        "name": "impl",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "config",
+        "optional": true,
+        "types": [
+          "{}"
+        ],
+        "defaultRaw": {},
+        "defaultValue": "{}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setValues",
+    "memberof": "src/components/form.js~Form",
+    "longname": "src/components/form.js~Form#setValues",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "params": [
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getValues",
+    "memberof": "src/components/form.js~Form",
+    "longname": "src/components/form.js~Form#getValues",
+    "access": null,
+    "description": null,
+    "lineNumber": 52,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "createFields",
+    "memberof": "src/components/form.js~Form",
+    "longname": "src/components/form.js~Form#createFields",
+    "access": null,
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "params": [
+      {
+        "name": "data",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "fields",
+    "memberof": "src/components/form.js~Form",
+    "longname": "src/components/form.js~Form#fields",
+    "access": null,
+    "description": null,
+    "lineNumber": 61,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/menu.js",
+    "memberof": null,
+    "longname": "src/components/menu.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\n\nexport default class Menu extends Container {\n  get menuItems() {\n    return this.componentEl.all(by.css(this.itemSelector));\n  }\n\n  get itemSelector() {\n    if (this.impl.itemSelector === undefined) {\n      throw 'The library you use should define itemSelector on its Menu implementation';\n    }\n    return this.impl.itemSelector;\n  }\n\n  clickItem(config) {\n    if (config.text) {\n      this.clickItemByText(config.text);\n    }\n    else if (config.index !== undefined) {\n      this.clickItemByIndex(config.index);\n    }\n    else if (config.selector) {\n      this.componentEl.element(by.css(config.selector)).click();\n    }\n    else {\n      throw 'Menu.clickItem() expects a config with either text, index or a selector';\n    }\n\n    return this;\n  }\n\n  clickItemByIndex(index) {\n    return this.menuItems.get(index).click();\n  }\n\n  clickItemByText(text) {\n    return this.menuItems.filter((el) => {\n      return el.getText().then((itemText) => {\n        return itemText.toLowerCase().trim() === text.toLowerCase().trim();\n      });\n    }).then((filteredItems) => {\n      if (filteredItems.length) {\n        filteredItems[0].click();\n      } else {\n        throw 'Trying to click on a menu item by text that does not exist';\n      }\n    });\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Menu",
+    "memberof": "src/components/menu.js",
+    "longname": "src/components/menu.js~Menu",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/menu.js",
+    "importStyle": "Menu",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "menuItems",
+    "memberof": "src/components/menu.js~Menu",
+    "longname": "src/components/menu.js~Menu#menuItems",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "itemSelector",
+    "memberof": "src/components/menu.js~Menu",
+    "longname": "src/components/menu.js~Menu#itemSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickItem",
+    "memberof": "src/components/menu.js~Menu",
+    "longname": "src/components/menu.js~Menu#clickItem",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickItemByIndex",
+    "memberof": "src/components/menu.js~Menu",
+    "longname": "src/components/menu.js~Menu#clickItemByIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 32,
+    "undocument": true,
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickItemByText",
+    "memberof": "src/components/menu.js~Menu",
+    "longname": "src/components/menu.js~Menu#clickItemByText",
+    "access": null,
+    "description": null,
+    "lineNumber": 36,
+    "undocument": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/menuButton.js",
+    "memberof": null,
+    "longname": "src/components/menuButton.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Button from './button.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class MenuButton extends Button {\n  get menu() {\n    return Spectangular.menu().whenVisible();\n  }\n\n  open() {\n    this.componentEl.click();\n    return this;\n  }\n\n  close() {\n    this.bodyEl.click();\n    return this;\n  }\n\n  openAndClickItem(config) {\n    this.open();\n    this.menu.clickItem(config);\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "MenuButton",
+    "memberof": "src/components/menuButton.js",
+    "longname": "src/components/menuButton.js~MenuButton",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/menuButton.js",
+    "importStyle": "MenuButton",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/button.js~Button"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "menu",
+    "memberof": "src/components/menuButton.js~MenuButton",
+    "longname": "src/components/menuButton.js~MenuButton#menu",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "open",
+    "memberof": "src/components/menuButton.js~MenuButton",
+    "longname": "src/components/menuButton.js~MenuButton#open",
+    "access": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "close",
+    "memberof": "src/components/menuButton.js~MenuButton",
+    "longname": "src/components/menuButton.js~MenuButton#close",
+    "access": null,
+    "description": null,
+    "lineNumber": 14,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "openAndClickItem",
+    "memberof": "src/components/menuButton.js~MenuButton",
+    "longname": "src/components/menuButton.js~MenuButton#openAndClickItem",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/pagination.js",
+    "memberof": null,
+    "longname": "src/components/pagination.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\n\nexport default class Pagination extends Container {\n  get previousButtonSelector() {\n    if (this.impl.previousButtonSelector === undefined) {\n      throw 'The library you use should define previousButtonSelector on its Pagination implementation';\n    }\n    return this.impl.previousButtonSelector;\n  }\n\n  get nextButtonSelector() {\n    if (this.impl.nextButtonSelector === undefined) {\n      throw 'The library you use should define nextButtonSelector on its Pagination implementation';\n    }\n    return this.impl.nextButtonSelector;\n  }\n\n  get currentPageSelector() {\n    if (this.impl.currentPageSelector === undefined) {\n      throw 'The library you use should define currentPageSelector on its Pagination implementation';\n    }\n    return this.impl.currentPageSelector;\n  }\n\n  get previousButtonEl() {\n    return this.componentEl.element(by.css(this.previousButtonSelector));\n  }\n\n  get nextButtonEl() {\n    return this.componentEl.element(by.css(this.nextButtonSelector));\n  }\n\n  get currentPageEl() {\n    return this.componentEl.element(by.css(this.currentPageSelector));\n  }\n\n  getCurrentPage() {\n    return this.currentPageEl.getText();\n  }\n\n  previous() {\n    this.previousButtonEl.click();\n    return this;\n  }\n\n  next() {\n    this.nextButtonEl.click();\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Pagination",
+    "memberof": "src/components/pagination.js",
+    "longname": "src/components/pagination.js~Pagination",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/pagination.js",
+    "importStyle": "Pagination",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "previousButtonSelector",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#previousButtonSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "nextButtonSelector",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#nextButtonSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "currentPageSelector",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#currentPageSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "previousButtonEl",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#previousButtonEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "nextButtonEl",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#nextButtonEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 29,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "currentPageEl",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#currentPageEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getCurrentPage",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#getCurrentPage",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "previous",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#previous",
+    "access": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "next",
+    "memberof": "src/components/pagination.js~Pagination",
+    "longname": "src/components/pagination.js~Pagination#next",
+    "access": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/searchfield.js",
+    "memberof": null,
+    "longname": "src/components/searchfield.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Textfield from './textfield.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Searchfield extends Textfield {\n  setValue(value) {\n    super.setValue(value);\n\n    Spectangular.select().clickItem({index: 0});\n\n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Searchfield",
+    "memberof": "src/components/searchfield.js",
+    "longname": "src/components/searchfield.js~Searchfield",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/searchfield.js",
+    "importStyle": "Searchfield",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/textfield.js~Textfield"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setValue",
+    "memberof": "src/components/searchfield.js~Searchfield",
+    "longname": "src/components/searchfield.js~Searchfield#setValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/select.js",
+    "memberof": null,
+    "longname": "src/components/select.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Menu from './menu.js';\n\nexport default class Select extends Menu {}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Select",
+    "memberof": "src/components/select.js",
+    "longname": "src/components/select.js~Select",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/select.js",
+    "importStyle": "Select",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/menu.js~Menu"
+    ]
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/selectfield.js",
+    "memberof": null,
+    "longname": "src/components/selectfield.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Component from './component.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Selectfield extends Component {\n  get clickTargetSelector() {\n    if (this.impl.clickTargetSelector !== undefined) {\n      return this.impl.clickTargetSelector;\n    }\n\n    return null;\n  }\n\n  setValue(value) {\n    var componentEl = this.componentEl;\n    var clickTargetSelector = this.clickTargetSelector;\n    var clickTargetEl = componentEl;\n\n    if (clickTargetSelector) {\n      clickTargetEl =  componentEl.element(by.css(clickTargetSelector));\n    }\n    clickTargetEl.click();\n\n    Spectangular.select().clickItem({text: value});\n    \n    return this;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Selectfield",
+    "memberof": "src/components/selectfield.js",
+    "longname": "src/components/selectfield.js~Selectfield",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/selectfield.js",
+    "importStyle": "Selectfield",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/component.js~Component"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "clickTargetSelector",
+    "memberof": "src/components/selectfield.js~Selectfield",
+    "longname": "src/components/selectfield.js~Selectfield#clickTargetSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setValue",
+    "memberof": "src/components/selectfield.js~Selectfield",
+    "longname": "src/components/selectfield.js~Selectfield#setValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/tab.js",
+    "memberof": null,
+    "longname": "src/components/tab.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Component from './component.js';\n\nexport default class Tab extends Component {\n  getComponentElByConfig(config) {\n    if (config.text) {\n      return this.byTabText(config.text);\n    } else if (config.index !== undefined) {\n      return this.byTabIndex(config.index);\n    }\n    return null;\n  }\n\n  getTabText(tabEl) {\n    if (this.impl.getTabText !== undefined) {\n      return this.impl.getTabText(tabEl);\n    }\n    return tabEl.getText();\n  }\n\n  byTabIndex(index) {\n    return this.rootEl.all(by.css(this.selector)).get(index);\n  }\n\n  byTabText(text) {\n    return this.rootEl.all(by.css(this.selector)).filter((tabEl) => {\n      return this.getTabText(tabEl).then((tabText) => {\n        return tabText.toLowerCase().trim() === text.toLowerCase().trim();\n      });\n    });\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Tab",
+    "memberof": "src/components/tab.js",
+    "longname": "src/components/tab.js~Tab",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/tab.js",
+    "importStyle": "Tab",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/component.js~Component"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getComponentElByConfig",
+    "memberof": "src/components/tab.js~Tab",
+    "longname": "src/components/tab.js~Tab#getComponentElByConfig",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getTabText",
+    "memberof": "src/components/tab.js~Tab",
+    "longname": "src/components/tab.js~Tab#getTabText",
+    "access": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "params": [
+      {
+        "name": "tabEl",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "byTabIndex",
+    "memberof": "src/components/tab.js~Tab",
+    "longname": "src/components/tab.js~Tab#byTabIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "byTabText",
+    "memberof": "src/components/tab.js~Tab",
+    "longname": "src/components/tab.js~Tab#byTabText",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/table.js",
+    "memberof": null,
+    "longname": "src/components/table.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Container from './container.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Table extends Container {\n  get rowSelector() {\n    if (this.impl.rowSelector === undefined) {\n      throw 'The library you use should define rowSelector on its Table implementation';\n    }\n    return this.impl.rowSelector;\n  }\n\n  get cellSelector() {\n    if (this.impl.cellSelector === undefined) {\n      throw 'The library you use should define cellSelector on its Table implementation';\n    }\n    return this.impl.cellSelector;\n  }\n\n  get headerSelector() {\n    if (this.impl.headerSelector === undefined) {\n      throw 'The library you use should define headerSelector on its Table implementation';\n    }\n    return this.impl.headerSelector;\n  }\n\n  get rows() {\n    return this.componentEl.all(by.css(this.rowSelector));\n  }\n\n  get headers() {\n    return this.componentEl.all(by.css(this.headerSelector));\n  }\n\n  get pagination() {\n    return Spectangular.pagination({\n      rootEl: this.componentEl\n    });\n  }\n\n  get rowCount() {\n    return this.rows.count();\n  }\n\n  clickHeader(config) {\n    if (config.text) {\n      return this.clickHeaderByText(config.text);\n    } else if (config.index) {\n      return this.clickHeaderByIndex(config.index);\n    } else {\n      throw 'Table.clickHeader() expects a config with either text or index';\n    }\n  }\n\n  clickHeaderByIndex(index) {\n    this.headers.get(index).click();\n    return this;\n  }\n\n  clickHeaderByText(text) {\n    this.headers.filter((header) => {\n      return header.getText().then((headerText) => {\n        return headerText.toLowerCase().trim() === text.toLowerCase().trim();\n      });\n    }).then((filteredItems) => {\n      if (filteredItems.length === 1) {\n        filteredItems[0].click();\n      } else if (!filteredItems.length) {\n        throw `Could not find a header with the text ${text}`;\n      } else {\n        throw `There are multiple headers with the text ${text}`;\n      }\n    });\n    return this;\n  }\n\n  getRowByIndex(index) {\n    return this.rows.get(index);\n  }\n\n  getCellValue(rowIndex, columnIndex) {\n    return this.rows.get(rowIndex)\n      .all(by.css(this.cellSelector))\n      .get(columnIndex)\n      .getText();\n  }\n\n  getRowMenuButton(rowIndex) {\n    return Spectangular.menuButton({\n      rootEl: this.rows.get(rowIndex)\n    });\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Table",
+    "memberof": "src/components/table.js",
+    "longname": "src/components/table.js~Table",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/table.js",
+    "importStyle": "Table",
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/container.js~Container"
+    ]
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "rowSelector",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#rowSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "cellSelector",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#cellSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "headerSelector",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#headerSelector",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "rows",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#rows",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "headers",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#headers",
+    "access": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "pagination",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#pagination",
+    "access": null,
+    "description": null,
+    "lineNumber": 34,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "rowCount",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#rowCount",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickHeader",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#clickHeader",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickHeaderByIndex",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#clickHeaderByIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "clickHeaderByText",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#clickHeaderByText",
+    "access": null,
+    "description": null,
+    "lineNumber": 59,
+    "undocument": true,
+    "params": [
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getRowByIndex",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#getRowByIndex",
+    "access": null,
+    "description": null,
+    "lineNumber": 76,
+    "undocument": true,
+    "params": [
+      {
+        "name": "index",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getCellValue",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#getCellValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 80,
+    "undocument": true,
+    "params": [
+      {
+        "name": "rowIndex",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "columnIndex",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getRowMenuButton",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#getRowMenuButton",
+    "access": null,
+    "description": null,
+    "lineNumber": 87,
+    "undocument": true,
+    "params": [
+      {
+        "name": "rowIndex",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/textarea.js",
+    "memberof": null,
+    "longname": "src/components/textarea.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Textfield from './textfield.js';\n\nexport default class Textarea extends Textfield {}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Textarea",
+    "memberof": "src/components/textarea.js",
+    "longname": "src/components/textarea.js~Textarea",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/textarea.js",
+    "importStyle": "Textarea",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/textfield.js~Textfield"
+    ]
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/textfield.js",
+    "memberof": null,
+    "longname": "src/components/textfield.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Component from './component.js';\n\nexport default class Textfield extends Component {\n  setValue(value) {\n    this.inputEl.clear();\n    this.inputEl.sendKeys(value);\n    return this;\n  }\n\n  get inputEl() {\n    if (this.impl.getInputEl !== undefined) {\n      return this.impl.getInputEl(this.componentEl);\n    }\n    return this.componentEl;\n  }\n}\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Textfield",
+    "memberof": "src/components/textfield.js",
+    "longname": "src/components/textfield.js~Textfield",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/components/textfield.js",
+    "importStyle": "Textfield",
+    "description": null,
+    "lineNumber": 3,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "src/components/component.js~Component"
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setValue",
+    "memberof": "src/components/textfield.js~Textfield",
+    "longname": "src/components/textfield.js~Textfield#setValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "params": [
+      {
+        "name": "value",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "inputEl",
+    "memberof": "src/components/textfield.js~Textfield",
+    "longname": "src/components/textfield.js~Textfield#inputEl",
+    "access": null,
+    "description": null,
+    "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/spectangular.js",
+    "memberof": null,
+    "longname": "src/spectangular.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "if (!element || !by || !expect) {\n  throw 'Protractor should be available when using Spectangular!';\n}\n\n// Load in the NodeJS Babel (ES6) polyfill\nimport '../node_modules/babel/polyfill.js';\n\n// These are the components that are exposed publicly\nimport Button from './components/button.js';\nimport Checkbox from './components/checkbox.js';\nimport Component from './components/component.js';\nimport Container from './components/container.js';\nimport Datefield from './components/datefield.js';\nimport Datepicker from './components/datepicker.js';\nimport Dialog from './components/dialog.js';\nimport Drawer from './components/drawer.js';\nimport Form from './components/form.js';\nimport Menu from './components/menu.js';\nimport MenuButton from './components/menuButton.js';\nimport Pagination from './components/pagination.js';\nimport Searchfield from './components/searchfield.js';\nimport Select from './components/select.js';\nimport Selectfield from './components/selectfield.js';\nimport Tab from './components/tab.js';\nimport Table from './components/table.js';\nimport Textfield from './components/textfield.js';\nimport Textarea from './components/textarea.js';\n\nclass Spectangular {\n  get library() {\n    return this._library;\n  }\n\n  set library(library) {\n    this._library = library;\n  }\n\n  set baseUrl(baseUrl) {\n    this._baseUrl = baseUrl;\n  }\n\n  get baseUrl() {\n    return this._baseUrl || '';\n  }\n\n  /**\n   * Page loading of non-angular pages. This method is called before each tests in the beforeEach method.\n   * \n   * The page loads the url and waits until the web element is loaded. This method is used for\n   * Angular applications which use AMD module pattern to load asynchronyously modules. See\n   * https://github.com/angular/protractor/issues/66 for discussion.\n   *\n   * Example:\n   *  Spectangular.loadPage('http://www.google.com','input#search');\n   *\n   * @param url, location of the page\n   * @param waitForElementSelector, css selector for the element\n   */\n  loadPageAndWait(url, waitForElementSelector = 'body') {\n    browser.driver.get(`${this.baseUrl}${url}`);\n\n    browser.driver.wait(() => {\n      if (browser.driver.isElementPresent(by.css(waitForElementSelector))) {\n        browser.sleep(2000);\n        return true;\n      } else {\n        console.log('Page is not ready yet. Trying again...');\n        return false;\n      }\n    }, 50000, 'Was not able to load the application!');\n  }\n\n  /**\n   * Refreshes the page and loads again the page. This is used in combination with closePage. This method reloads\n   * the Angular context before continue with the loading the page. This method is useful if tests use the same fixture\n   * and the test need a fully reload of the fixture and Angular context.\n   *\n   * @param url\n   * @param waitForElementSelector\n   */\n  loadPageRefresh(url, waitForElementSelector = 'body') {\n    browser.driver.navigate().refresh();\n    this.loadPage(url, waitForElementSelector);\n  }\n\n  /**\n   * Page loading of angular pages. This method is called before each tests in the beforeEach method.\n   *\n   * The page loads the url. Protractor waits until the page is loaded and expect that the web element is loaded.\n   * This method is used for application which do NOT use AMD module pattern and load the Angular application with\n   * a ng-app directive.\n   *\n   * Example:\n   *  Spectangular.loadAngularPage('http://www.my-angular-app.nl','.toolbar');\n   *\n   * @param url of the page\n   * @param waitForElementSelector, css selector for the element\n   */\n  loadPage(url, waitForElementSelector = 'body') {\n    browser.get(`${this.baseUrl}${url}`);\n    expect(element(by.css(waitForElementSelector)).isPresent()).toBe(true);\n  }\n\n  /**\n   * Returns the specific implementation class for the current library.\n   *\n   * @param clsName class name\n   * @returns {*} or an exception if the clsName does not exits\n   */\n  getImplementationFor(clsName) {\n    var LibraryImplementation = this.library[clsName];\n    if (LibraryImplementation === undefined) {\n      throw `The library you are using has no implementation for ${clsName}`;\n    }\n    return LibraryImplementation;\n  }\n\n  component(config) {\n    return new Component(this.getImplementationFor('Component'), config);\n  }\n\n  container(config) {\n    return new Container(this.getImplementationFor('Container'), config);\n  }\n\n  button(config) {\n    return new Button(this.getImplementationFor('Button'), config);\n  }\n\n  tab(config) {\n    return new Tab(this.getImplementationFor('Tab'), config);\n  }\n\n  dialog(config) {\n    return new Dialog(this.getImplementationFor('Dialog'), config);\n  }\n\n  drawer(config) {\n    return new Drawer(this.getImplementationFor('Drawer'), config);\n  }\n\n  form(config) {\n    return new Form(this.getImplementationFor('Form'), config);\n  }\n\n  textfield(config) {\n    return new Textfield(this.getImplementationFor('Textfield'), config);\n  }\n\n  textarea(config) {\n    return new Textarea(this.getImplementationFor('Textarea'), config);\n  }\n\n  selectfield(config) {\n    return new Selectfield(this.getImplementationFor('Selectfield'), config);\n  }\n\n  searchfield(config) {\n    return new Searchfield(this.getImplementationFor('Searchfield'), config);\n  }\n\n  datefield(config) {\n    return new Datefield(this.getImplementationFor('Datefield'), config);\n  }\n\n  datepicker(config) {\n    return new Datepicker(this.getImplementationFor('Datepicker'), config);\n  }\n\n  select(config) {\n    return new Select(this.getImplementationFor('Select'), config);\n  }\n\n  checkbox(config) {\n    return new Checkbox(this.getImplementationFor('Checkbox'), config);\n  }\n\n  menu(config) {\n    return new Menu(this.getImplementationFor('Menu'), config);\n  }\n\n  menuButton(config) {\n    return new MenuButton(this.getImplementationFor('MenuButton'), config);\n  }\n\n  table(config) {\n    return new Table(this.getImplementationFor('Table'), config);\n  }\n\n  pagination(config) {\n    return new Pagination(this.getImplementationFor('Pagination'), config);\n  }\n}\n\nexport default new Spectangular();\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Spectangular",
+    "memberof": "src/spectangular.js",
+    "longname": "src/spectangular.js~Spectangular",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/spectangular.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 29,
+    "pseudoExport": true,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "library",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#library",
+    "access": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "library",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#library",
+    "access": null,
+    "description": null,
+    "lineNumber": 34,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_library",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#_library",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "baseUrl",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#baseUrl",
+    "access": null,
+    "description": null,
+    "lineNumber": 38,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_baseUrl",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#_baseUrl",
+    "access": null,
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "baseUrl",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#baseUrl",
+    "access": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "loadPageAndWait",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#loadPageAndWait",
+    "access": null,
+    "description": "Page loading of non-angular pages. This method is called before each tests in the beforeEach method.\n\nThe page loads the url and waits until the web element is loaded. This method is used for\nAngular applications which use AMD module pattern to load asynchronyously modules. See\nhttps://github.com/angular/protractor/issues/66 for discussion.\n\nExample:\n Spectangular.loadPage('http://www.google.com','input#search');",
+    "lineNumber": 59,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url,",
+        "description": "location of the page"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "waitForElementSelector,",
+        "description": "css selector for the element"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "loadPageRefresh",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#loadPageRefresh",
+    "access": null,
+    "description": "Refreshes the page and loads again the page. This is used in combination with closePage. This method reloads\nthe Angular context before continue with the loading the page. This method is useful if tests use the same fixture\nand the test need a fully reload of the fixture and Angular context.",
+    "lineNumber": 81,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": ""
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "waitForElementSelector",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "loadPage",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#loadPage",
+    "access": null,
+    "description": "Page loading of angular pages. This method is called before each tests in the beforeEach method.\n\nThe page loads the url. Protractor waits until the page is loaded and expect that the web element is loaded.\nThis method is used for application which do NOT use AMD module pattern and load the Angular application with\na ng-app directive.\n\nExample:\n Spectangular.loadAngularPage('http://www.my-angular-app.nl','.toolbar');",
+    "lineNumber": 99,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "url",
+        "description": "of the page"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "waitForElementSelector,",
+        "description": "css selector for the element"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getImplementationFor",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#getImplementationFor",
+    "access": null,
+    "description": "Returns the specific implementation class for the current library.",
+    "lineNumber": 110,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{*} or an exception if the clsName does not exits"
+      }
+    ],
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "*"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "clsName",
+        "description": "class name"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "*"
+      ],
+      "spread": false,
+      "description": "or an exception if the clsName does not exits"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "component",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#component",
+    "access": null,
+    "description": null,
+    "lineNumber": 118,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "container",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#container",
+    "access": null,
+    "description": null,
+    "lineNumber": 122,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "button",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#button",
+    "access": null,
+    "description": null,
+    "lineNumber": 126,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "tab",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#tab",
+    "access": null,
+    "description": null,
+    "lineNumber": 130,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dialog",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#dialog",
+    "access": null,
+    "description": null,
+    "lineNumber": 134,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "drawer",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#drawer",
+    "access": null,
+    "description": null,
+    "lineNumber": 138,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "form",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#form",
+    "access": null,
+    "description": null,
+    "lineNumber": 142,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "textfield",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#textfield",
+    "access": null,
+    "description": null,
+    "lineNumber": 146,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "textarea",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#textarea",
+    "access": null,
+    "description": null,
+    "lineNumber": 150,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "selectfield",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#selectfield",
+    "access": null,
+    "description": null,
+    "lineNumber": 154,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "searchfield",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#searchfield",
+    "access": null,
+    "description": null,
+    "lineNumber": 158,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "datefield",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#datefield",
+    "access": null,
+    "description": null,
+    "lineNumber": 162,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "datepicker",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#datepicker",
+    "access": null,
+    "description": null,
+    "lineNumber": 166,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "select",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#select",
+    "access": null,
+    "description": null,
+    "lineNumber": 170,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "checkbox",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#checkbox",
+    "access": null,
+    "description": null,
+    "lineNumber": 174,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "menu",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#menu",
+    "access": null,
+    "description": null,
+    "lineNumber": 178,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "menuButton",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#menuButton",
+    "access": null,
+    "description": null,
+    "lineNumber": 182,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "table",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#table",
+    "access": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "pagination",
+    "memberof": "src/spectangular.js~Spectangular",
+    "longname": "src/spectangular.js~Spectangular#pagination",
+    "access": null,
+    "description": null,
+    "lineNumber": 190,
+    "undocument": true,
+    "params": [
+      {
+        "name": "config",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "spectangular",
+    "memberof": "src/spectangular.js",
+    "longname": "src/spectangular.js~spectangular",
+    "access": null,
+    "export": true,
+    "importPath": "spectangular/src/spectangular.js",
+    "importStyle": "spectangular",
+    "description": null,
+    "lineNumber": 195,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/spectangular.js~Spectangular"
+      ]
+    }
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  }
+]

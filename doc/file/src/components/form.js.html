@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/components/form.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/schubergphilis/spectangular" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/src/components/button.js~Button.html">Button</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/checkbox.js~Checkbox.html">Checkbox</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/component.js~Component.html">Component</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/container.js~Container.html">Container</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/datefield.js~Datefield.html">Datefield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/datepicker.js~Datepicker.html">Datepicker</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/dialog.js~Dialog.html">Dialog</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/drawer.js~Drawer.html">Drawer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/form.js~Form.html">Form</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/menu.js~Menu.html">Menu</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/menuButton.js~MenuButton.html">MenuButton</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/pagination.js~Pagination.html">Pagination</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/searchfield.js~Searchfield.html">Searchfield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/select.js~Select.html">Select</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/selectfield.js~Selectfield.html">Selectfield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/spectangular.js~Spectangular.html">Spectangular</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/tab.js~Tab.html">Tab</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/table.js~Table.html">Table</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/textarea.js~Textarea.html">Textarea</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/textfield.js~Textfield.html">Textfield</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+<div data-ice="variableWrap">
+  <h2><a href="variable/">Variable</a></h2>
+  <ul>
+    
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-monthMap">monthMap</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-spectangular">spectangular</a></span></li>
+</ul>
+</div>
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/components/form.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Container from &apos;./container.js&apos;;
+import Spectangular from &apos;../spectangular.js&apos;;
+
+export default class Form extends Container {
+  static validate(data) {
+    for (var index in data) {
+      if (data.hasOwnProperty(index)) {
+        var row = data[index];
+        if (!row.hasOwnProperty(&apos;model&apos;)) {
+          throw &apos;Test specification does not have a model&apos;;
+        }
+        if (!row.hasOwnProperty(&apos;value&apos;)) {
+          throw &apos;Test specification does not have value&apos;;
+        }
+        if (!row.hasOwnProperty(&apos;type&apos;)) {
+          throw &apos;Test specification does not have a type&apos;;
+        }
+      }
+    }
+
+    return true;
+  }
+
+  constructor(impl, config = {}) {
+    super(impl, config);
+
+    if (config.data) {
+      this.createFields(config.data);
+      this.setValues(config.data);
+    } else if (config.fields) {
+      this.createFields(config.fields);
+    } else {
+      throw &apos;A form needs to have either data (containing fields) or fields specified on the configuration&apos;;
+    }
+  }
+
+  setValues(data) {
+    if (!Form.validate(data)) {
+      throw &apos;The data that you are trying to set to this form is not valid&apos;;
+    }
+
+    data.forEach((item) =&gt; {
+      let field = this.fields[item.model];
+      if (field) {
+        field.setValue(item.value);
+      }
+    });
+
+    return this;
+  }
+
+  getValues() {
+    var values = {};
+    this.fields.forEach((field) =&gt; {
+      values[field.model] = field.getValue();
+    });
+    return values;
+  }
+
+  createFields(data) {
+    this.fields = {};
+
+    data.forEach((item) =&gt; {
+      if (!Spectangular[item.type]) {
+        throw `Field type ${item.type} is not valid.`;
+      }
+
+      this.fields[item.model] = Spectangular[item.type]({
+        rootEl: this.componentEl,
+        selector: `[ng-model=&apos;${item.model}&apos;]`
+      });
+    });
+
+    return this;
+  }
+}
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.4)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

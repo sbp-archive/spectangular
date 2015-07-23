@@ -24,10 +24,20 @@ module.exports = function(grunt) {
             },
         },
 
+        shell: {
+            doc: {
+                command: 'npm run-script esdoc'
+            }
+        },
+
         watch: {
             transpile: {
                 files: 'src/**/*.js',
                 tasks: ['babel']
+            },
+            doc: {
+                files: 'src/**/*.js',
+                tasks: ['shell:doc']
             }
         },
 
@@ -57,7 +67,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-release');
     grunt.loadNpmTasks('grunt-babel');
+    grunt.loadNpmTasks('grunt-shell');
 
-    grunt.registerTask('default', ['clean', 'jshint', 'babel']);
+    grunt.registerTask('default', ['clean', 'jshint', 'babel', 'shell:doc']);
     grunt.registerTask('dev', ['clean', 'jshint', 'babel', 'watch']);
 };
