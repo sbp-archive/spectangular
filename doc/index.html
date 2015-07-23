@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/schubergphilis/spectangular" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/src/components/button.js~Button.html">Button</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/checkbox.js~Checkbox.html">Checkbox</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/component.js~Component.html">Component</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/container.js~Container.html">Container</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/datefield.js~Datefield.html">Datefield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/datepicker.js~Datepicker.html">Datepicker</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/dialog.js~Dialog.html">Dialog</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/drawer.js~Drawer.html">Drawer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/form.js~Form.html">Form</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/menu.js~Menu.html">Menu</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/menuButton.js~MenuButton.html">MenuButton</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/pagination.js~Pagination.html">Pagination</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/searchfield.js~Searchfield.html">Searchfield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/select.js~Select.html">Select</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/selectfield.js~Selectfield.html">Selectfield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/spectangular.js~Spectangular.html">Spectangular</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/tab.js~Tab.html">Tab</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/table.js~Table.html">Table</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/textarea.js~Textarea.html">Textarea</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/textfield.js~Textfield.html">Textfield</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+<div data-ice="variableWrap">
+  <h2><a href="variable/">Variable</a></h2>
+  <ul>
+    
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-monthMap">monthMap</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-spectangular">spectangular</a></span></li>
+</ul>
+</div>
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index"><h1 id="spectangular">Spectangular</h1>
+<p>Simple Protractor e2e Component Testing for Angular</p>
+<p>This library helps with writing e2e tests for Angular applications by supporting the navigation to 
+and interaction with web elements.  The library uses Protactor <a href="https://angular.github.io/protractor/#/">Protractor-jasmine</a>. </p>
+<h1 id="protractor-version">Protractor version</h1>
+<p>The current supported Protractor version is 2.1.0.</p>
+<h1 id="demo-application">Demo application</h1>
+<p>The demo application uses <a href="https://material.angularjs.org/latest/#/">Angular material</a></p>
+<p><a href="https://github.com/mgijsbertihodenpijl/spectangular-demo">Demo spectangular</a> </p>
+<h1 id="installation">Installation</h1>
+<p><code>npm install</code></p>
+<p>Declare the library as node module into the package.json of your application.</p>
+<h1 id="development-ecmascript-6-">Development (ECMAscript 6)</h1>
+<p>Because the components are written in ECMAscript 6, the code is transpiled with Babel. During development you can watch 
+and transpile the code automatically into the dist folder.</p>
+<p><code>grunt dev</code></p>
+<h1 id="example-1-login-page">Example 1: login page</h1>
+<p>This example explains how to write an e2e test for a login page. The login page contains a form with two input fields, one
+for the username and one for the password and a submit button. The page starts on <a href="http://localhost:8080/#/inloggen">http://localhost:8080/#/inloggen</a>.</p>
+<p>There are small differences between ECMAscript 5 and 6 when declaring the spectangular library. </p>
+<h2 id="ecmascript-6">ECMAscript 6</h2>
+<pre><code class="language-javascript">
+import Spectangular from &apos;../node_modules/spectangular/dist/spectangular.js&apos;;
+import * as SpectangularMdLibrary from &apos;../node_modules/spectangular/dist/libraries/md/md.js&apos;;
+</code></pre>
+
+<h2 id="ecmascript-5">ECMAscript 5</h2>
+<pre><code class="language-javascript">
+var Spectangular = require(&apos;../node_modules/spectangular/dist/spectangular.js&apos;&apos;);
+var SpectangularMdLibrary = require(&apos;../node_modules/spectangular/dist/libraries/md/md.js&apos;);
+</code></pre>
+
+
+<p>The example (ECMA6script) :  </p>
+<pre><code class="language-javascript">
+import Spectangular from &apos;../node_modules/spectangular/dist/spectangular.js&apos;;
+import * as SpectangularMdLibrary from &apos;../node_modules/spectangular/dist/libraries/md/md.js&apos;;
+
+Spectangular.baseUrl = &apos;http://localhost:8080&apos;;
+Spectangular.library = SpectangularMdLibrary
+
+//loads the startpage        
+Spectangular.loadPage(&apos;/#/start/&apos;, &apos;input#username&apos;);
+
+//selectors and data for the form       
+var buttonText = &apos;Save&apos;;
+var formData = [
+  {&quot;model&quot;: &quot;user.username&quot;, &quot;value&quot;: &quot;admin&quot;, &quot;type&quot;: &quot;textfield&quot;},
+  {&quot;model&quot;: &quot;user.password&quot;, &quot;value&quot;: &quot;welcome&quot;, &quot;type&quot;: &quot;textfield&quot;}
+]
+
+//execution
+Spectangular.form({
+  selector: &apos;[name=\&quot;userForm\&quot;]&apos;,
+  data: formData
+})
+
+//save the form
+Spectangular.button({text: buttonText}).click();       
+</code></pre>
+
+<h2 id="spectangular">Spectangular</h2>
+<p>The Spectangular library is declared in the package.json in your application and as such installed with <code>npm install</code>. 
+Make sure that the <strong>dist</strong> folder is used !</p>
+<pre><code class="language-javascript">
+import Spectangular from &apos;../node_modules/spectangular/dist/spectangular.js&apos;;
+import * as SpectangularMdLibrary from &apos;../node_modules/spectangular/dist/libraries/md/md.js&apos;;
+
+Spectangular.baseUrl = &apos;http://localhost:8080&apos;;
+Spectangular.library = SpectangularMdLibrary;
+</code></pre>
+
+
+<h2 id="adapters">Adapters</h2>
+<pre><code class="language-javascript">
+import * as SpectangularMdLibrary from &apos;../node_modules/spectangular/dist/libraries/md/md.js&apos;;
+Spectangular.library = SpectangularMdLibrary;
+</code></pre>
+
+<p>Spectangular is extensible with different adapters for the support different frontend libraries. 
+At the start of the test you have to declare adapter as a the library module. </p>
+<h2 id="spectangular">Spectangular</h2>
+<p><code>import * as SpectangularMdLibrary from &apos;../node_modules/spectangular/dist/libraries/md/md.js&apos;</code>
+<code>Spectangular.library = SpectangularMdLibrary</code></p>
+<h2 id="base-url">Base Url</h2>
+<p><code>Spectangular.baseUrl = &apos;http://localhost:8080&apos;;;</code></p>
+<p>The baseUrl is the start url of your application.</p>
+<p><code>Spectangular.loadPage(&apos;/#/start/&apos;, &apos;input#username&apos;);</code></p>
+<p>The loadPage function is used for the start page. The browser navigates to the baseUrl and waits on Angular to load 
+the location (&apos;/#/login/&apos;).The second argument (&apos;input#username&apos;) is a css selector. The browser waits until the web 
+element with this css selector is loaded into the start page.  For this example, the browser waits until an input field 
+with id &apos;username&apos; is loaded on the start page. </p>
+<h2 id="form">Form</h2>
+<pre><code class="language-javascript">
+var formData = [
+  {&quot;model&quot;: &quot;user.username&quot;, &quot;value&quot;: &quot;admin&quot;, &quot;type&quot;: &quot;textfield&quot;},
+  {&quot;model&quot;: &quot;user.password&quot;, &quot;value&quot;: &quot;welcome&quot;, &quot;type&quot;: &quot;textfield&quot;}
+]
+
+Spectangular.form({
+  selector: &apos;[name=\&quot;userForm\&quot;]&apos;,
+  data: formData
+})
+</code></pre>
+
+<p>Spectangular.form is used for navigation and interaction with form input fields.</p>
+<h2 id="css-selector">CSS selector</h2>
+<p>The library uses <a href="http://www.w3.org/TR/css3-selectors/">css selectors</a> to find the web elements on the page. </p>
+<p><code>selector: &apos;[name=\&quot;userForm\&quot;]&apos;,</code></p>
+<p>The css selector defines an web element with attribute name and value &apos;userForm&apos;. This element is the container element
+of the form, which contains all the input fields. </p>
+<h2 id="type-attribute">type attribute</h2>
+<p>The formData variable is a JSON object with the configuration for the formHelper.  The type defines the type of input 
+field. The supported type of fields are:</p>
+<ul>
+<li>textfield</li>
+<li>textarea</li>
+<li>selectfield </li>
+<li>datefield</li>
+<li>checkbox</li>
+<li>searchfield</li>
+</ul>
+<h2 id="model-attribute">model attribute</h2>
+<p>The model attribute is the unique ng-model attribute of the field. For example:</p>
+<pre><code><pre class="source-code"><code class="prettyprint">&lt;material-input-group ng-model=&quot;user.username&quot;&gt;   
+    &lt;label&gt;Gebruikersnaam&lt;/label&gt;   
+    &lt;input&gt;&lt;/input&gt;
+&lt;/material-input-group&gt;</code></pre>
+</code></pre><p>The userName field has an unique ng-model attribute with value user.username. The e2e test will navigate to the field
+with the attribute ng-model &apos;user.username&apos; as css selector.</p>
+<p><strong>Important</strong> Make sure that each field contains an unique ng-model. If the ng-model is not unique, 
+Selenium will give a warning. For example:</p>
+<p><code>....WARNING - more than one element found for locator By.cssSelector(&quot;.checkboxDemo1&quot;) - the first result will be used</code></p>
+<p>You cannot use the form but need to use unique css selectors for each field. </p>
+<p>For example:</p>
+<p><code>Spectangular.input({selector: &apos;[ng-click=\&quot;showListBottomSheet($event)\&quot;]&apos;}).sendKeys(&apos;Hi!&apos;);</code></p>
+<h2 id="value-attribute">value attribute</h2>
+<p>The value attribute is the value the field will have when the test is executed. In this example, the username field will
+have the value &apos;admin&apos; and the password field will have the value &apos;welcome&apos;.</p>
+<h1 id="example-2-table-with-menu">Example 2: table with menu</h1>
+<p>Open the menu in a table row.</p>
+<pre><code class="language-javascript">
+Spectangular
+  .table({selector: &apos;material-gridlist.overview&apos;})
+  .getRowMenuButton(0)
+  .openAndClickItem({text: &apos;Update&apos;});
+</code></pre>
+
+<h2 id="table">table</h2>
+<p><code>Spectangular
+  .table({selector: &apos;material-gridlist.overview&apos;})</code></p>
+<p>Finds the table with css selector &apos;material-gridlist.overview&apos;.</p>
+<h2 id="getrowmenubutton-0-">getRowMenuButton(0)</h2>
+<p><code>.getRowMenuButton(0)</code></p>
+<p>Gets the first row (0) of the table</p>
+<h2 id="openandclickitem-text-update-">openAndClickItem({text: &apos;Update&apos;})</h2>
+<p>Opens the menu item &apos;Update&apos; and clicks on the menu item.</p>
+<h1 id="example-3-drawer-and-tabs">Example 3: drawer and tabs</h1>
+<p>This example opens a drawer, waits until the drawer is visible and switches to a tab &apos;Out&apos;</p>
+<pre><code class="language-javascript">
+Spectangular.drawer({selector: &apos;[drawer-id=\&quot;drawer-messages-add\&quot;]&apos;})
+  .whenVisible()
+  .switchTab({label: &apos;Out&apos;});
+</code></pre>
+
+<h2 id="whenvisible">whenVisible</h2>
+<p>WhenVisible uses the [Protractor Expected Conditions] (<a href="https://angular.github.io/protractor/#/api?view=ExpectedConditions">https://angular.github.io/protractor/#/api?view=ExpectedConditions</a>) </p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.4)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

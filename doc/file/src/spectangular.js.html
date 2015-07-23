@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/spectangular.js | API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/schubergphilis/spectangular" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/src/components/button.js~Button.html">Button</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/checkbox.js~Checkbox.html">Checkbox</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/component.js~Component.html">Component</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/container.js~Container.html">Container</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/datefield.js~Datefield.html">Datefield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/datepicker.js~Datepicker.html">Datepicker</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/dialog.js~Dialog.html">Dialog</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/drawer.js~Drawer.html">Drawer</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/form.js~Form.html">Form</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/menu.js~Menu.html">Menu</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/menuButton.js~MenuButton.html">MenuButton</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/pagination.js~Pagination.html">Pagination</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/searchfield.js~Searchfield.html">Searchfield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/select.js~Select.html">Select</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/selectfield.js~Selectfield.html">Selectfield</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/spectangular.js~Spectangular.html">Spectangular</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/tab.js~Tab.html">Tab</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/table.js~Table.html">Table</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/textarea.js~Textarea.html">Textarea</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/components/textfield.js~Textfield.html">Textfield</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+<div data-ice="variableWrap">
+  <h2><a href="variable/">Variable</a></h2>
+  <ul>
+    
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-monthMap">monthMap</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-spectangular">spectangular</a></span></li>
+</ul>
+</div>
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/spectangular.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">if (!element || !by || !expect) {
+  throw &apos;Protractor should be available when using Spectangular!&apos;;
+}
+
+// Load in the NodeJS Babel (ES6) polyfill
+import &apos;../node_modules/babel/polyfill.js&apos;;
+
+// These are the components that are exposed publicly
+import Button from &apos;./components/button.js&apos;;
+import Checkbox from &apos;./components/checkbox.js&apos;;
+import Component from &apos;./components/component.js&apos;;
+import Container from &apos;./components/container.js&apos;;
+import Datefield from &apos;./components/datefield.js&apos;;
+import Datepicker from &apos;./components/datepicker.js&apos;;
+import Dialog from &apos;./components/dialog.js&apos;;
+import Drawer from &apos;./components/drawer.js&apos;;
+import Form from &apos;./components/form.js&apos;;
+import Menu from &apos;./components/menu.js&apos;;
+import MenuButton from &apos;./components/menuButton.js&apos;;
+import Pagination from &apos;./components/pagination.js&apos;;
+import Searchfield from &apos;./components/searchfield.js&apos;;
+import Select from &apos;./components/select.js&apos;;
+import Selectfield from &apos;./components/selectfield.js&apos;;
+import Tab from &apos;./components/tab.js&apos;;
+import Table from &apos;./components/table.js&apos;;
+import Textfield from &apos;./components/textfield.js&apos;;
+import Textarea from &apos;./components/textarea.js&apos;;
+
+class Spectangular {
+  get library() {
+    return this._library;
+  }
+
+  set library(library) {
+    this._library = library;
+  }
+
+  set baseUrl(baseUrl) {
+    this._baseUrl = baseUrl;
+  }
+
+  get baseUrl() {
+    return this._baseUrl || &apos;&apos;;
+  }
+
+  /**
+   * Page loading of non-angular pages. This method is called before each tests in the beforeEach method.
+   * 
+   * The page loads the url and waits until the web element is loaded. This method is used for
+   * Angular applications which use AMD module pattern to load asynchronyously modules. See
+   * https://github.com/angular/protractor/issues/66 for discussion.
+   *
+   * Example:
+   *  Spectangular.loadPage(&apos;http://www.google.com&apos;,&apos;input#search&apos;);
+   *
+   * @param url, location of the page
+   * @param waitForElementSelector, css selector for the element
+   */
+  loadPageAndWait(url, waitForElementSelector = &apos;body&apos;) {
+    browser.driver.get(`${this.baseUrl}${url}`);
+
+    browser.driver.wait(() =&gt; {
+      if (browser.driver.isElementPresent(by.css(waitForElementSelector))) {
+        browser.sleep(2000);
+        return true;
+      } else {
+        console.log(&apos;Page is not ready yet. Trying again...&apos;);
+        return false;
+      }
+    }, 50000, &apos;Was not able to load the application!&apos;);
+  }
+
+  /**
+   * Refreshes the page and loads again the page. This is used in combination with closePage. This method reloads
+   * the Angular context before continue with the loading the page. This method is useful if tests use the same fixture
+   * and the test need a fully reload of the fixture and Angular context.
+   *
+   * @param url
+   * @param waitForElementSelector
+   */
+  loadPageRefresh(url, waitForElementSelector = &apos;body&apos;) {
+    browser.driver.navigate().refresh();
+    this.loadPage(url, waitForElementSelector);
+  }
+
+  /**
+   * Page loading of angular pages. This method is called before each tests in the beforeEach method.
+   *
+   * The page loads the url. Protractor waits until the page is loaded and expect that the web element is loaded.
+   * This method is used for application which do NOT use AMD module pattern and load the Angular application with
+   * a ng-app directive.
+   *
+   * Example:
+   *  Spectangular.loadAngularPage(&apos;http://www.my-angular-app.nl&apos;,&apos;.toolbar&apos;);
+   *
+   * @param url of the page
+   * @param waitForElementSelector, css selector for the element
+   */
+  loadPage(url, waitForElementSelector = &apos;body&apos;) {
+    browser.get(`${this.baseUrl}${url}`);
+    expect(element(by.css(waitForElementSelector)).isPresent()).toBe(true);
+  }
+
+  /**
+   * Returns the specific implementation class for the current library.
+   *
+   * @param clsName class name
+   * @returns {*} or an exception if the clsName does not exits
+   */
+  getImplementationFor(clsName) {
+    var LibraryImplementation = this.library[clsName];
+    if (LibraryImplementation === undefined) {
+      throw `The library you are using has no implementation for ${clsName}`;
+    }
+    return LibraryImplementation;
+  }
+
+  component(config) {
+    return new Component(this.getImplementationFor(&apos;Component&apos;), config);
+  }
+
+  container(config) {
+    return new Container(this.getImplementationFor(&apos;Container&apos;), config);
+  }
+
+  button(config) {
+    return new Button(this.getImplementationFor(&apos;Button&apos;), config);
+  }
+
+  tab(config) {
+    return new Tab(this.getImplementationFor(&apos;Tab&apos;), config);
+  }
+
+  dialog(config) {
+    return new Dialog(this.getImplementationFor(&apos;Dialog&apos;), config);
+  }
+
+  drawer(config) {
+    return new Drawer(this.getImplementationFor(&apos;Drawer&apos;), config);
+  }
+
+  form(config) {
+    return new Form(this.getImplementationFor(&apos;Form&apos;), config);
+  }
+
+  textfield(config) {
+    return new Textfield(this.getImplementationFor(&apos;Textfield&apos;), config);
+  }
+
+  textarea(config) {
+    return new Textarea(this.getImplementationFor(&apos;Textarea&apos;), config);
+  }
+
+  selectfield(config) {
+    return new Selectfield(this.getImplementationFor(&apos;Selectfield&apos;), config);
+  }
+
+  searchfield(config) {
+    return new Searchfield(this.getImplementationFor(&apos;Searchfield&apos;), config);
+  }
+
+  datefield(config) {
+    return new Datefield(this.getImplementationFor(&apos;Datefield&apos;), config);
+  }
+
+  datepicker(config) {
+    return new Datepicker(this.getImplementationFor(&apos;Datepicker&apos;), config);
+  }
+
+  select(config) {
+    return new Select(this.getImplementationFor(&apos;Select&apos;), config);
+  }
+
+  checkbox(config) {
+    return new Checkbox(this.getImplementationFor(&apos;Checkbox&apos;), config);
+  }
+
+  menu(config) {
+    return new Menu(this.getImplementationFor(&apos;Menu&apos;), config);
+  }
+
+  menuButton(config) {
+    return new MenuButton(this.getImplementationFor(&apos;MenuButton&apos;), config);
+  }
+
+  table(config) {
+    return new Table(this.getImplementationFor(&apos;Table&apos;), config);
+  }
+
+  pagination(config) {
+    return new Pagination(this.getImplementationFor(&apos;Pagination&apos;), config);
+  }
+}
+
+export default new Spectangular();
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.1.4)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

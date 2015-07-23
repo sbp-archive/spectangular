@@ -45,7 +45,7 @@ class Spectangular {
 
   /**
    * Page loading of non-angular pages. This method is called before each tests in the beforeEach method.
-   *
+   * 
    * The page loads the url and waits until the web element is loaded. This method is used for
    * Angular applications which use AMD module pattern to load asynchronyously modules. See
    * https://github.com/angular/protractor/issues/66 for discussion.
@@ -53,7 +53,7 @@ class Spectangular {
    * Example:
    *  Spectangular.loadPage('http://www.google.com','input#search');
    *
-   * @param url of the page
+   * @param url, location of the page
    * @param waitForElementSelector, css selector for the element
    */
   loadPageAndWait(url, waitForElementSelector = 'body') {
