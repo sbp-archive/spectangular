@@ -29,6 +29,12 @@ and transpile the code automatically into the dist folder.
  
 `grunt dev`
 
+# Documentation (ECMA script 6)
+
+`grunt shell:doc`
+
+Generates the documentation from the base classes into the doc folder.
+
 # Example 1: login page
 
 This example explains how to write an e2e test for a login page. The login page contains a form with two input fields, one
