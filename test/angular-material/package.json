@@ -1,0 +1,42 @@
+{
+  "name": "spectangular-demo",
+  "version": "0.0.2",
+  "description": "Demo implementation of e2e tests in spectangular",
+  "main": "spec.js",
+  "dependencies": {
+    "protractor": "^2.1.0"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-babel": "^5.0.1",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-protractor-runner": "^2.0.0",
+    "grunt-release": "^0.13.0",
+    "spectangular": "^0.9.5",
+    "jasmine-spec-reporter": "1.2.0"
+  },
+  "scripts": {
+    "up-driver": "node_modules/protractor/bin/webdriver-manager update --standalone",
+    "driver": "node_modules/protractor/bin/webdriver-manager start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgijsbertihodenpijl/spectangular-demo.git"
+  },
+  "keywords": [
+    "spectangular",
+    "angular",
+    "protractor",
+    "e2e",
+    "angularMaterial",
+    "angular-material"
+  ],
+  "author": "Martijn Gijsberti Hodenpijl <mgijsbertihodenpijl@schubergphilis.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mgijsbertihodenpijl/spectangular-demo/issues"
+  },
+  "homepage": "https://github.com/mgijsbertihodenpijl/spectangular-demo"
+}
