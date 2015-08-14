@@ -22,9 +22,23 @@ export default class Component {
 
   /**
    *  Each component has a single unique web element, which is stored in the componentEl. Note that
-   *  the componentEl is a promise to a Selenium web element.
+   *  the componentEl and rootEl are protractor elements.
    *
-   * @returns {promise to Selenium web element}
+   *  A componentEl can be retrieved in two ways:
+   *
+   *  - by the config object (this.config), which is passed as argument to the component.
+   *  By config is used if the component has extended the getComponentElByConfig method.
+   *  - by a css selector, which finds the child of a root element (this.rootEl)
+   *  By css selector can be used for any parent root element. Make sure you pass the rootElement as a protractor
+   *  element to the component.
+   *
+   *  Example for a menu button:
+   *          var rootEl = $('[demo-id=\"menudemoBasicUsage\"]');
+   *          Spectangular
+   *             .menuButton({rootEl: rootEl})
+   *            .openAndClickItem({text: 'redial'});
+   *
+   * @returns {protractor element}
    */
   get componentEl() {
     if (!this._componentEl) {
@@ -34,10 +48,9 @@ export default class Component {
       } else if (this.selector) {
         this._componentEl = this.rootEl.element(by.css(this.selector));
       } else {
-        throw 'Unable to get componentEl based on config or selector.';
+        throw 'Unable to get componentEl based on config or root selector.';
       }
     }
-
     return this._componentEl;
   }
 

@@ -1,6 +1,6 @@
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
-  specs: ['dist/spec.button.js', 'dist/spec.checkbox.js'],
+  specs: ['dist/spec.button.js', 'dist/spec.checkbox.js', 'dist/spec.menubutton.js'],
   capabilities: {'browserName' : 'chrome'},
   directConnect:false,
   jasmineNodeOpts: {
