@@ -29,6 +29,10 @@ and transpile the code automatically into the dist folder.
  
 `grunt dev`
 
+**Important!** The transpiled code in the dist folder is also committed! Make sure you always transpile your changes
+before committing changes.
+
+
 # Documentation (ECMA script 6)
 
 `grunt shell:doc`
