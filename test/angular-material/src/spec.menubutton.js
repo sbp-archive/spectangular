@@ -31,6 +31,8 @@ describe('Demo of menu buttons', function () {
         Spectangular
             .menuButton({rootEl: rootEl})
             .openAndClickItem({text: 'redial'});
+        //Avoid error "Element is not clickable" in Chrome
+        browser.driver.sleep(2000);
         Spectangular
             .dialog({})
             .clickButton({text: 'That was easy'});
