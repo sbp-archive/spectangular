@@ -24,23 +24,25 @@ describe('Demo of sidenav', function () {
         Spectangular
             .button({
                 rootEl: rootEl,
-                text: 'toggle right'})
+                text: 'toggle right'
+            })
             .click();
         var sideNavRoot = $('.md-sidenav-right');
         // Wait for the sidenav to be available with ExpectedConditions,
         // see https://angular.github.io/protractor/#/api?view=ExpectedConditions
-        browser.wait(protractor.ExpectedConditions.presenceOf(sideNavRoot),2000);
+        browser.wait(protractor.ExpectedConditions.presenceOf(sideNavRoot), 2000);
         expect(sideNavRoot.isPresent()).toBe(true);
         Spectangular.form({
             rootEl: sideNavRoot,
             data: [
-                {model: 'data', value: 'Hello world!', type: 'textfield'},
+                {model: 'data', value: 'Hello world!', type: 'textfield'}
             ]
         });
         Spectangular
             .button({
                 rootEl: sideNavRoot,
-                text: 'close sidenav right'})
+                text: 'close sidenav right'
+            })
             .click();
     });
 });

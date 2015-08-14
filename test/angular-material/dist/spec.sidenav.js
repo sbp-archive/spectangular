@@ -34,7 +34,8 @@ describe('Demo of sidenav', function () {
         expect(rootEl.isPresent()).toBe(true);
         _node_modulesSpectangularDistSpectangularJs2['default'].button({
             rootEl: rootEl,
-            text: 'toggle right' }).click();
+            text: 'toggle right'
+        }).click();
         var sideNavRoot = $('.md-sidenav-right');
         // Wait for the sidenav to be available with ExpectedConditions,
         // see https://angular.github.io/protractor/#/api?view=ExpectedConditions
@@ -46,6 +47,7 @@ describe('Demo of sidenav', function () {
         });
         _node_modulesSpectangularDistSpectangularJs2['default'].button({
             rootEl: sideNavRoot,
-            text: 'close sidenav right' }).click();
+            text: 'close sidenav right'
+        }).click();
     });
 });
