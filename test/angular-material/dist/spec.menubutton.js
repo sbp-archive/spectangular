@@ -40,6 +40,8 @@ describe('Demo of menu buttons', function () {
         var rootEl = $('[demo-id=\"menudemoBasicUsage\"]');
         expect(rootEl.isPresent()).toBe(true);
         _node_modulesSpectangularDistSpectangularJs2['default'].menuButton({ rootEl: rootEl }).openAndClickItem({ text: 'redial' });
+        //Avoid error "Element is not clickable" in Chrome
+        browser.driver.sleep(2000);
         _node_modulesSpectangularDistSpectangularJs2['default'].dialog({}).clickButton({ text: 'That was easy' });
     });
 });
