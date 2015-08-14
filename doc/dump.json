@@ -248,7 +248,7 @@
     "access": null,
     "description": null,
     "lineNumber": 17,
-    "content": "/**\n * Component class is a parent for all classes in Spectangular and contains the API for all actions.\n *\n * The component element is specified in the configuration (selector).\n *\n * Example:\n *   Spectangular.button({selector: '[ng-click=\\\"showListBottomSheet($event)\\\"]'}).click();\n *\n * The selector is css selector for a web element with an attribute ng-click with value showListBottomSheet($event).\n * The web element is the componentEl.\n *\n * The ImplementationCls is a class for a specific implementation. For instance angular-material\n * has a specific component class. The base component class is injected into the implementation class\n * during construction. In this way implementation and base classes are loosely coupled.\n *\n */\nexport default class Component {\n  constructor(ImplementationCls, config = {}) {\n    this.config = config;\n    this.impl = new ImplementationCls(this);\n  }\n\n  /**\n   *  Each component has a single unique web element, which is stored in the componentEl. Note that\n   *  the componentEl is a promise to a Selenium web element.\n   *\n   * @returns {promise to Selenium web element}\n   */\n  get componentEl() {\n    if (!this._componentEl) {\n      let componentElByConfig = this.getComponentElByConfig(this.config);\n      if (componentElByConfig) {\n        this._componentEl = componentElByConfig;\n      } else if (this.selector) {\n        this._componentEl = this.rootEl.element(by.css(this.selector));\n      } else {\n        throw 'Unable to get componentEl based on config or selector.';\n      }\n    }\n\n    return this._componentEl;\n  }\n\n  /**\n   * Extension point for componentEl. A subclass of a component may implement this for a specific\n   * configuration.\n   *\n   * @returns {null}\n   */\n  getComponentElByConfig() {\n    return null;\n  }\n\n  /**\n   * Obligatory for each component. The method implements the default selector in case the configuration does not\n   * contain a selector.\n   *\n   * @returns {*|null} throws exception if not implemented.\n   */\n  get defaultSelector() {\n    if (this.impl.defaultSelector === undefined) {\n      throw 'The library you use should define a defaultSelector on its Component implementations';\n    }\n    return this.impl.defaultSelector || null;\n  }\n\n  get selector() {\n    return this.config.selector || this.defaultSelector;\n  }\n\n  /**\n   * Returns the root element. The root element is the container element which contains the component element(s).\n   *\n   * For instance, a form contains a input element.\n   * form = rootEl\n   * input = componentEl\n   *\n   * @returns {*} the rootElement or the body of the html page.\n   */\n  get rootEl() {\n    return this.config.rootEl || this.bodyEl;\n  }\n\n  get bodyEl() {\n    return element(by.css('body'));\n  }\n\n  /**\n   * The configuration can contain a time out. If not, the default time out is selected. The time out is used\n   * in the whenVisible and whenInvisble methods.\n   *\n   * @returns {*|Number|number}\n   */\n  get timeout() {\n    return this.config.timeout || 5000;\n  }\n\n  /**\n   * Clicks on the component element.\n   *\n   * @returns {Component}\n   */\n  click() {\n    this.componentEl.click();\n    return this;\n  }\n\n  /**\n   * Sets the value of the component element.\n   *\n   * @param value, the value of the element.\n   * @returns {Component}\n   */\n  sendKeys(value) {\n    this.componentEl.sendKeys(value);\n    return this;\n  }\n\n  /**\n   * Waits for the web element to be visible.\n   *\n   * @returns {Component}\n   */\n  whenVisible() {\n    browser.wait(protractor.ExpectedConditions.visibilityOf(this.componentEl), this.timeout);\n    return this;\n  }\n\n  /**\n   * Waits for the wb element to be invisible.\n   *\n   * @returns {Component}\n   */\n  whenInvisible() {\n    var EC = protractor.ExpectedConditions;\n    browser.wait(EC.or(\n      EC.stalenessOf(this.componentEl),\n      EC.invisibilityOf(this.componentEl)\n    ), this.timeout);\n    return this;\n  }\n}\n"
+    "content": "/**\n * Component class is a parent for all classes in Spectangular and contains the API for all actions.\n *\n * The component element is specified in the configuration (selector).\n *\n * Example:\n *   Spectangular.button({selector: '[ng-click=\\\"showListBottomSheet($event)\\\"]'}).click();\n *\n * The selector is css selector for a web element with an attribute ng-click with value showListBottomSheet($event).\n * The web element is the componentEl.\n *\n * The ImplementationCls is a class for a specific implementation. For instance angular-material\n * has a specific component class. The base component class is injected into the implementation class\n * during construction. In this way implementation and base classes are loosely coupled.\n *\n */\nexport default class Component {\n  constructor(ImplementationCls, config = {}) {\n    this.config = config;\n    this.impl = new ImplementationCls(this);\n  }\n\n  /**\n   *  Each component has a single unique web element, which is stored in the componentEl. Note that\n   *  the componentEl and rootEl are protractor elements.\n   *\n   *  A componentEl can be retrieved in two ways:\n   *\n   *  - by the config object (this.config), which is passed as argument to the component.\n   *  By config is used if the component has extended the getComponentElByConfig method.\n   *  - by a css selector, which finds the child of a root element (this.rootEl)\n   *  By css selector can be used for any parent root element. Make sure you pass the rootElement as a protractor\n   *  element to the component.\n   *\n   *  Example for a menu button:\n   *          var rootEl = $('[demo-id=\\\"menudemoBasicUsage\\\"]');\n   *          Spectangular\n   *             .menuButton({rootEl: rootEl})\n   *            .openAndClickItem({text: 'redial'});\n   *\n   * @returns {protractor element}\n   */\n  get componentEl() {\n    if (!this._componentEl) {\n      let componentElByConfig = this.getComponentElByConfig(this.config);\n      if (componentElByConfig) {\n        this._componentEl = componentElByConfig;\n      } else if (this.selector) {\n        this._componentEl = this.rootEl.element(by.css(this.selector));\n      } else {\n        throw 'Unable to get componentEl based on config or root selector.';\n      }\n    }\n    return this._componentEl;\n  }\n\n  /**\n   * Extension point for componentEl. A subclass of a component may implement this for a specific\n   * configuration.\n   *\n   * @returns {null}\n   */\n  getComponentElByConfig() {\n    return null;\n  }\n\n  /**\n   * Obligatory for each component. The method implements the default selector in case the configuration does not\n   * contain a selector.\n   *\n   * @returns {*|null} throws exception if not implemented.\n   */\n  get defaultSelector() {\n    if (this.impl.defaultSelector === undefined) {\n      throw 'The library you use should define a defaultSelector on its Component implementations';\n    }\n    return this.impl.defaultSelector || null;\n  }\n\n  get selector() {\n    return this.config.selector || this.defaultSelector;\n  }\n\n  /**\n   * Returns the root element. The root element is the container element which contains the component element(s).\n   *\n   * For instance, a form contains a input element.\n   * form = rootEl\n   * input = componentEl\n   *\n   * @returns {*} the rootElement or the body of the html page.\n   */\n  get rootEl() {\n    return this.config.rootEl || this.bodyEl;\n  }\n\n  get bodyEl() {\n    return element(by.css('body'));\n  }\n\n  /**\n   * The configuration can contain a time out. If not, the default time out is selected. The time out is used\n   * in the whenVisible and whenInvisble methods.\n   *\n   * @returns {*|Number|number}\n   */\n  get timeout() {\n    return this.config.timeout || 5000;\n  }\n\n  /**\n   * Clicks on the component element.\n   *\n   * @returns {Component}\n   */\n  click() {\n    this.componentEl.click();\n    return this;\n  }\n\n  /**\n   * Sets the value of the component element.\n   *\n   * @param value, the value of the element.\n   * @returns {Component}\n   */\n  sendKeys(value) {\n    this.componentEl.sendKeys(value);\n    return this;\n  }\n\n  /**\n   * Waits for the web element to be visible.\n   *\n   * @returns {Component}\n   */\n  whenVisible() {\n    browser.wait(protractor.ExpectedConditions.visibilityOf(this.componentEl), this.timeout);\n    return this;\n  }\n\n  /**\n   * Waits for the wb element to be invisible.\n   *\n   * @returns {Component}\n   */\n  whenInvisible() {\n    var EC = protractor.ExpectedConditions;\n    browser.wait(EC.or(\n      EC.stalenessOf(this.componentEl),\n      EC.invisibilityOf(this.componentEl)\n    ), this.timeout);\n    return this;\n  }\n}\n"
   },
   {
     "kind": "class",
@@ -337,18 +337,18 @@
     "memberof": "src/components/component.js~Component",
     "longname": "src/components/component.js~Component#componentEl",
     "access": null,
-    "description": " Each component has a single unique web element, which is stored in the componentEl. Note that\n the componentEl is a promise to a Selenium web element.",
-    "lineNumber": 29,
+    "description": " Each component has a single unique web element, which is stored in the componentEl. Note that\n the componentEl and rootEl are protractor elements.\n\n A componentEl can be retrieved in two ways:\n\n - by the config object (this.config), which is passed as argument to the component.\n By config is used if the component has extended the getComponentElByConfig method.\n - by a css selector, which finds the child of a root element (this.rootEl)\n By css selector can be used for any parent root element. Make sure you pass the rootElement as a protractor\n element to the component.\n\n Example for a menu button:\n         var rootEl = $('[demo-id=\\\"menudemoBasicUsage\\\"]');\n         Spectangular\n            .menuButton({rootEl: rootEl})\n           .openAndClickItem({text: 'redial'});",
+    "lineNumber": 43,
     "unknown": [
       {
         "tagName": "@returns",
-        "tagValue": "{promise to Selenium web element}"
+        "tagValue": "{protractor element}"
       }
     ],
     "return": {
       "nullable": null,
       "types": [
-        "promise to Selenium web element"
+        "protractor element"
       ],
       "spread": false,
       "description": ""
@@ -369,7 +369,7 @@
     "longname": "src/components/component.js~Component#_componentEl",
     "access": null,
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 47,
     "undocument": true,
     "type": {
       "types": [
@@ -386,7 +386,7 @@
     "longname": "src/components/component.js~Component#_componentEl",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 49,
     "undocument": true,
     "type": {
       "types": [
@@ -403,7 +403,7 @@
     "longname": "src/components/component.js~Component#getComponentElByConfig",
     "access": null,
     "description": "Extension point for componentEl. A subclass of a component may implement this for a specific\nconfiguration.",
-    "lineNumber": 50,
+    "lineNumber": 63,
     "unknown": [
       {
         "tagName": "@returns",
@@ -430,7 +430,7 @@
     "longname": "src/components/component.js~Component#defaultSelector",
     "access": null,
     "description": "Obligatory for each component. The method implements the default selector in case the configuration does not\ncontain a selector.",
-    "lineNumber": 60,
+    "lineNumber": 73,
     "unknown": [
       {
         "tagName": "@returns",
@@ -462,7 +462,7 @@
     "longname": "src/components/component.js~Component#selector",
     "access": null,
     "description": null,
-    "lineNumber": 67,
+    "lineNumber": 80,
     "undocument": true,
     "type": {
       "types": [
@@ -480,7 +480,7 @@
     "longname": "src/components/component.js~Component#rootEl",
     "access": null,
     "description": "Returns the root element. The root element is the container element which contains the component element(s).\n\nFor instance, a form contains a input element.\nform = rootEl\ninput = componentEl",
-    "lineNumber": 80,
+    "lineNumber": 93,
     "unknown": [
       {
         "tagName": "@returns",
@@ -511,7 +511,7 @@
     "longname": "src/components/component.js~Component#bodyEl",
     "access": null,
     "description": null,
-    "lineNumber": 84,
+    "lineNumber": 97,
     "undocument": true,
     "type": {
       "types": [
@@ -529,7 +529,7 @@
     "longname": "src/components/component.js~Component#timeout",
     "access": null,
     "description": "The configuration can contain a time out. If not, the default time out is selected. The time out is used\nin the whenVisible and whenInvisble methods.",
-    "lineNumber": 94,
+    "lineNumber": 107,
     "unknown": [
       {
         "tagName": "@returns",
@@ -562,7 +562,7 @@
     "longname": "src/components/component.js~Component#click",
     "access": null,
     "description": "Clicks on the component element.",
-    "lineNumber": 103,
+    "lineNumber": 116,
     "unknown": [
       {
         "tagName": "@returns",
@@ -589,7 +589,7 @@
     "longname": "src/components/component.js~Component#sendKeys",
     "access": null,
     "description": "Sets the value of the component element.",
-    "lineNumber": 114,
+    "lineNumber": 127,
     "unknown": [
       {
         "tagName": "@returns",
@@ -627,7 +627,7 @@
     "longname": "src/components/component.js~Component#whenVisible",
     "access": null,
     "description": "Waits for the web element to be visible.",
-    "lineNumber": 124,
+    "lineNumber": 137,
     "unknown": [
       {
         "tagName": "@returns",
@@ -654,7 +654,7 @@
     "longname": "src/components/component.js~Component#whenInvisible",
     "access": null,
     "description": "Waits for the wb element to be invisible.",
-    "lineNumber": 134,
+    "lineNumber": 147,
     "unknown": [
       {
         "tagName": "@returns",
