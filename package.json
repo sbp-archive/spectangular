@@ -1,7 +1,7 @@
 {
   "name": "spectangular",
   "description": "Simple Protractor e2e Component Testing for Angular",
-  "version": "0.9.5",
+  "version": "0.9.6",
   "author": {
     "name": "Tommy Maintz",
     "email": "tommy.maintz@gmail.com"
@@ -10,6 +10,10 @@
     {
       "name": "Martijn Gijsberti Hodenpijl",
       "email": "mgijsberti@gmail.com"
+    },
+    {
+      "name": "V.A. Verhaagen",
+      "email": "vverhaagen@schubergphilis.com"
     }
   ],
   "scripts": {
