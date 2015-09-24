@@ -1002,6 +1002,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/components/table.js~table#getrowindexbycellvalue",
+    "class/src/components/table.js~Table.html#instance-method-getRowIndexByCellValue",
+    "src/components/table.js~Table#getRowIndexByCellValue",
+    "method"
+  ],
+  [
     "src/components/table.js~table#getrowmenubutton",
     "class/src/components/table.js~Table.html#instance-method-getRowMenuButton",
     "src/components/table.js~Table#getRowMenuButton",

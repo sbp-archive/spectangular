@@ -2175,7 +2175,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Container from './container.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Table extends Container {\n  get rowSelector() {\n    if (this.impl.rowSelector === undefined) {\n      throw 'The library you use should define rowSelector on its Table implementation';\n    }\n    return this.impl.rowSelector;\n  }\n\n  get cellSelector() {\n    if (this.impl.cellSelector === undefined) {\n      throw 'The library you use should define cellSelector on its Table implementation';\n    }\n    return this.impl.cellSelector;\n  }\n\n  get headerSelector() {\n    if (this.impl.headerSelector === undefined) {\n      throw 'The library you use should define headerSelector on its Table implementation';\n    }\n    return this.impl.headerSelector;\n  }\n\n  get rows() {\n    return this.componentEl.all(by.css(this.rowSelector));\n  }\n\n  get headers() {\n    return this.componentEl.all(by.css(this.headerSelector));\n  }\n\n  get pagination() {\n    return Spectangular.pagination({\n      rootEl: this.componentEl\n    });\n  }\n\n  get rowCount() {\n    return this.rows.count();\n  }\n\n  clickHeader(config) {\n    if (config.text) {\n      return this.clickHeaderByText(config.text);\n    } else if (config.index) {\n      return this.clickHeaderByIndex(config.index);\n    } else {\n      throw 'Table.clickHeader() expects a config with either text or index';\n    }\n  }\n\n  clickHeaderByIndex(index) {\n    this.headers.get(index).click();\n    return this;\n  }\n\n  clickHeaderByText(text) {\n    this.headers.filter((header) => {\n      return header.getText().then((headerText) => {\n        return headerText.toLowerCase().trim() === text.toLowerCase().trim();\n      });\n    }).then((filteredItems) => {\n      if (filteredItems.length === 1) {\n        filteredItems[0].click();\n      } else if (!filteredItems.length) {\n        throw `Could not find a header with the text ${text}`;\n      } else {\n        throw `There are multiple headers with the text ${text}`;\n      }\n    });\n    return this;\n  }\n\n  getRowByIndex(index) {\n    return this.rows.get(index);\n  }\n\n  getCellValue(rowIndex, columnIndex) {\n    return this.rows.get(rowIndex)\n      .all(by.css(this.cellSelector))\n      .get(columnIndex)\n      .getText();\n  }\n\n  getRowMenuButton(rowIndex) {\n    return Spectangular.menuButton({\n      rootEl: this.rows.get(rowIndex)\n    });\n  }\n}\n"
+    "content": "import Container from './container.js';\nimport Spectangular from '../spectangular.js';\n\nexport default class Table extends Container {\n  get rowSelector() {\n    if (this.impl.rowSelector === undefined) {\n      throw 'The library you use should define rowSelector on its Table implementation';\n    }\n    return this.impl.rowSelector;\n  }\n\n  get cellSelector() {\n    if (this.impl.cellSelector === undefined) {\n      throw 'The library you use should define cellSelector on its Table implementation';\n    }\n    return this.impl.cellSelector;\n  }\n\n  get headerSelector() {\n    if (this.impl.headerSelector === undefined) {\n      throw 'The library you use should define headerSelector on its Table implementation';\n    }\n    return this.impl.headerSelector;\n  }\n\n  get rows() {\n    return this.componentEl.all(by.css(this.rowSelector));\n  }\n\n  get headers() {\n    return this.componentEl.all(by.css(this.headerSelector));\n  }\n\n  get pagination() {\n    return Spectangular.pagination({\n      rootEl: this.componentEl\n    });\n  }\n\n  get rowCount() {\n    return this.rows.count();\n  }\n\n  clickHeader(config) {\n    if (config.text) {\n      return this.clickHeaderByText(config.text);\n    } else if (config.index) {\n      return this.clickHeaderByIndex(config.index);\n    } else {\n      throw 'Table.clickHeader() expects a config with either text or index';\n    }\n  }\n\n  clickHeaderByIndex(index) {\n    this.headers.get(index).click();\n    return this;\n  }\n\n  clickHeaderByText(text) {\n    this.headers.filter((header) => {\n      return header.getText().then((headerText) => {\n        return headerText.toLowerCase().trim() === text.toLowerCase().trim();\n      });\n    }).then((filteredItems) => {\n      if (filteredItems.length === 1) {\n        filteredItems[0].click();\n      } else if (!filteredItems.length) {\n        throw `Could not find a header with the text ${text}`;\n      } else {\n        throw `There are multiple headers with the text ${text}`;\n      }\n    });\n    return this;\n  }\n\n  getRowByIndex(index) {\n    return this.rows.get(index);\n  }\n\n  getRowIndexByCellValue(columnIndex, text) {\n    let foundRowIndex = -1;\n\n    return this.rows.each((row, index) => {\n      return row\n        .all(by.css(this.cellSelector))\n        .get(columnIndex)\n        .getText()\n        .then((cellText) => {\n          if (cellText.toLowerCase().trim() === text.toLowerCase().trim()) {\n            foundRowIndex = index;\n          }\n        });\n    }).then(() => {\n      return foundRowIndex;\n    });\n  }\n\n  getCellValue(rowIndex, columnIndex) {\n    return this.rows.get(rowIndex)\n      .all(by.css(this.cellSelector))\n      .get(columnIndex)\n      .getText();\n  }\n\n  getRowMenuButton(rowIndex) {\n    return Spectangular.menuButton({\n      rootEl: this.rows.get(rowIndex)\n    });\n  }\n}\n"
   },
   {
     "kind": "class",
@@ -2430,12 +2430,44 @@
     "kind": "method",
     "static": false,
     "variation": null,
+    "name": "getRowIndexByCellValue",
+    "memberof": "src/components/table.js~Table",
+    "longname": "src/components/table.js~Table#getRowIndexByCellValue",
+    "access": null,
+    "description": null,
+    "lineNumber": 80,
+    "undocument": true,
+    "params": [
+      {
+        "name": "columnIndex",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "text",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
     "name": "getCellValue",
     "memberof": "src/components/table.js~Table",
     "longname": "src/components/table.js~Table#getCellValue",
     "access": null,
     "description": null,
-    "lineNumber": 80,
+    "lineNumber": 98,
     "undocument": true,
     "params": [
       {
@@ -2467,7 +2499,7 @@
     "longname": "src/components/table.js~Table#getRowMenuButton",
     "access": null,
     "description": null,
-    "lineNumber": 87,
+    "lineNumber": 105,
     "undocument": true,
     "params": [
       {

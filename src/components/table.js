@@ -77,6 +77,24 @@ export default class Table extends Container {
     return this.rows.get(index);
   }
 
+  getRowIndexByCellValue(columnIndex, text) {
+    let foundRowIndex = -1;
+
+    return this.rows.each((row, index) => {
+      return row
+        .all(by.css(this.cellSelector))
+        .get(columnIndex)
+        .getText()
+        .then((cellText) => {
+          if (cellText.toLowerCase().trim() === text.toLowerCase().trim()) {
+            foundRowIndex = index;
+          }
+        });
+    }).then(() => {
+      return foundRowIndex;
+    });
+  }
+
   getCellValue(rowIndex, columnIndex) {
     return this.rows.get(rowIndex)
       .all(by.css(this.cellSelector))

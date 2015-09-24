@@ -1,6 +1,6 @@
 {
-  "coverage": "10.6%",
-  "expectCount": 132,
+  "coverage": "10.52%",
+  "expectCount": 133,
   "actualCount": 14,
   "files": {
     "src/components/button.js": {
@@ -72,7 +72,7 @@
       "actualCount": 0
     },
     "src/components/table.js": {
-      "expectCount": 14,
+      "expectCount": 15,
       "actualCount": 0
     },
     "src/components/textarea.js": {

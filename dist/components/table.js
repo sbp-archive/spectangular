@@ -74,6 +74,23 @@ var Table = (function (_Container) {
       return this.rows.get(index);
     }
   }, {
+    key: 'getRowIndexByCellValue',
+    value: function getRowIndexByCellValue(columnIndex, text) {
+      var _this = this;
+
+      var foundRowIndex = -1;
+
+      return this.rows.each(function (row, index) {
+        return row.all(by.css(_this.cellSelector)).get(columnIndex).getText().then(function (cellText) {
+          if (cellText.toLowerCase().trim() === text.toLowerCase().trim()) {
+            foundRowIndex = index;
+          }
+        });
+      }).then(function () {
+        return foundRowIndex;
+      });
+    }
+  }, {
     key: 'getCellValue',
     value: function getCellValue(rowIndex, columnIndex) {
       return this.rows.get(rowIndex).all(by.css(this.cellSelector)).get(columnIndex).getText();
